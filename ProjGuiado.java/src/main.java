@@ -6,7 +6,8 @@ public class main {
 		// TODO Auto-generated method stub
 		labirinth lab = new labirinth();
 		lab.printLab();
-		//hello :)
+		//hello :) 
+		//this working?
 	}
 
 }
