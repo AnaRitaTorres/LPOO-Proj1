@@ -1,13 +1,33 @@
 
-public class Character {
+public class Character 
+{
 	
-	private int[] position ;
+	protected int position[] = new int [2] ;
 	
-	public int[] getPosition(char character)
+	public int[] getPosition()
 	{
 		return position;
 	}
 	
-
-
+	public char getChar()
+	{
+		return '\0';
+	}
+	
+	public void setPosition(char c)
+	{
+		switch(c)
+		{
+		case 'U':
+			position[0] = position[0] - 1;
+		case 'D':
+			position[0] = position[0] + 1;
+		case 'L':
+			position[1] = position[1] - 1;
+		case 'R':
+			position[1] = position[1] + 1;
+		}
+	}
 }
+
+

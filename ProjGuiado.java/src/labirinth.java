@@ -3,7 +3,7 @@
 public class labirinth 
 {
 
-
+	
 	private char lab[][] = {
 			{'X','X','X','X','X','X','X','X','X','X'},
 			{'X',' ',' ',' ',' ',' ',' ',' ',' ','X'},
@@ -16,7 +16,11 @@ public class labirinth
 			{'X',' ','X','X',' ',' ',' ',' ',' ','X'},
 			{'X','X','X','X','X','X','X','X','X','X'}
 	};
-
+	
+	public char[][] getLab()
+	{
+		return lab;
+	}
 	public void printLab()
 	{
 		for(int j=0; j < lab.length;j++)
@@ -32,14 +36,59 @@ public class labirinth
 	
 	public void move(char direction, Character c)
 	{
-		int m;
 		
 		switch (direction)
 		{
 		case 'U': 
+			System.out.print("U");
+			if(lab[c.getPosition()[0] -1][c.getPosition()[1]] == ' ')
+			{
+				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+				lab[c.getPosition()[0] -1][c.getPosition()[1]] = c.getChar();
+				c.setPosition(direction);
+				
+				
+			}
+			break;
 			
+		case 'D': 
+			System.out.print("D");
+			if(lab[c.getPosition()[0] +1][c.getPosition()[1]] == ' ')
+			{
+				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+				lab[c.getPosition()[0] +1][c.getPosition()[1]] = c.getChar();
+				c.setPosition(direction);
+				
+			}
+			break;
+			
+		case 'L': 
+			System.out.print("L");
+			if(lab[c.getPosition()[0]][c.getPosition()[1] -1] == ' ')
+			{
+				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+				lab[c.getPosition()[0]][c.getPosition()[1] -1] = c.getChar();
+				c.setPosition(direction);
+				
+			}
+			break;
+			
+		case 'R': 
+			System.out.print("R");
+			if(lab[c.getPosition()[0]][c.getPosition()[1] +1] == ' ')
+			{
+				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+				lab[c.getPosition()[0]][c.getPosition()[1] +1] = c.getChar();
+				c.setPosition(direction);
+				
+			}
+			break;
 			
 		}
+		
+		System.out.print(c.getPosition()[1]);
+		System.out.print(c.getPosition()[0]);
+		
 	}
 
 }
