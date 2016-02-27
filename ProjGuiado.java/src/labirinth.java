@@ -34,9 +34,9 @@ public class labirinth
 		}
 	}
 	
-	public void move(char direction, Character c)
+	public boolean move(char direction, Character c)
 	{
-		
+		boolean ret = false;
 		switch (direction)
 		{
 		case 'U': 
@@ -46,7 +46,7 @@ public class labirinth
 				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 				lab[c.getPosition()[0] -1][c.getPosition()[1]] = c.getChar();
 				c.setPosition(direction);
-				
+				ret = true;
 				
 			}
 			break;
@@ -58,7 +58,7 @@ public class labirinth
 				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 				lab[c.getPosition()[0] +1][c.getPosition()[1]] = c.getChar();
 				c.setPosition(direction);
-				
+				ret = true;
 			}
 			break;
 			
@@ -69,7 +69,7 @@ public class labirinth
 				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 				lab[c.getPosition()[0]][c.getPosition()[1] -1] = c.getChar();
 				c.setPosition(direction);
-				
+				ret = true;
 			}
 			break;
 			
@@ -80,7 +80,7 @@ public class labirinth
 				lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 				lab[c.getPosition()[0]][c.getPosition()[1] +1] = c.getChar();
 				c.setPosition(direction);
-				
+				ret = true;
 			}
 			break;
 			
@@ -88,6 +88,34 @@ public class labirinth
 		
 		System.out.print(c.getPosition()[1]);
 		System.out.print(c.getPosition()[0]);
+		
+		return ret;
+	}
+	
+	public void randomMove(Character c)
+	{
+		boolean stop = false;
+		while(!stop)
+		{
+			switch(0 + (int)(Math.random() * ((3 - 0) + 1)))
+			{
+			case 0:
+				stop = move('U', c);
+				break;
+			
+			case 1:
+				stop = move('R', c);
+				break;
+			
+			case 2:
+				stop = move('L', c);
+				break;
+			
+			case 3:
+				stop = move('D', c);
+				break;
+			}
+		}
 		
 	}
 

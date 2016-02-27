@@ -20,12 +20,16 @@ public class Character
 		{
 		case 'U':
 			position[0] = position[0] - 1;
+			break;
 		case 'D':
 			position[0] = position[0] + 1;
+			break;
 		case 'L':
 			position[1] = position[1] - 1;
+			break;
 		case 'R':
 			position[1] = position[1] + 1;
+			break;
 		}
 	}
 }

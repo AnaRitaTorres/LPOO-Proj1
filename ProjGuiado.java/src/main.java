@@ -6,9 +6,11 @@ public class main {
 		// TODO Auto-generated method stub
 		labirinth lab = new labirinth();
 		Character czar = new Hero(1, 1, 'H');
+		Character dd = new Dragon(8, 1, 'D');
 		
 		Scanner sc = new Scanner(System.in);
 		lab.getLab()[czar.getPosition()[0]][czar.getPosition()[1]] = czar.getChar();
+		lab.getLab()[dd.getPosition()[0]][dd.getPosition()[1]] = dd.getChar();
 		while (true)
 		{
 			lab.printLab();
@@ -16,7 +18,7 @@ public class main {
 			
 			char c = sc.next().charAt(0);
 			lab.move(c, czar);
-			
+			lab.randomMove(dd);
 			System.out.print("\n");
 			
 			
