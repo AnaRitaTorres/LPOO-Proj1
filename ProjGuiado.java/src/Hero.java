@@ -14,4 +14,46 @@ public class Hero extends Character
 	{
 		return h;
 	}
+	
+	public void setArmed()
+	{
+		h = 'A';
+	}
+	
+	public void setDisarmed()
+	{
+		h = 'H';
+	}
+	
+	public boolean encounter(labirinth lab)
+	{
+		
+		if(lab.getLab()[getPosition()[0] -1][getPosition()[1]] == 'D')
+		{
+			return  true;
+		}
+		if(lab.getLab()[getPosition()[0] +1][getPosition()[1]] == 'D')
+		{
+			return  true;
+		}
+		if(lab.getLab()[getPosition()[0]][getPosition()[1] -1] == 'D')
+		{
+			return  true;
+		}
+		if(lab.getLab()[getPosition()[0]][getPosition()[1] +1] == 'D')
+		{
+			return  true;
+		}
+		
+		return false;
+	}
+	
+	public boolean isAlive(labirinth lab)
+	{
+		if(encounter(lab) == true && h == 'H')
+			return false;
+		else
+			return true;
+	}
+	
 }

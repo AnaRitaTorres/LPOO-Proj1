@@ -7,10 +7,14 @@ public class main {
 		labirinth lab = new labirinth();
 		Character czar = new Hero(1, 1, 'H');
 		Character dd = new Dragon(8, 1, 'D');
+		Weapon sword = new Weapon(1, 8, 'E');
 		
 		Scanner sc = new Scanner(System.in);
+		
 		lab.getLab()[czar.getPosition()[0]][czar.getPosition()[1]] = czar.getChar();
 		lab.getLab()[dd.getPosition()[0]][dd.getPosition()[1]] = dd.getChar();
+		lab.getLab()[sword.getPosition()[0]][sword.getPosition()[1]] = sword.getChar();
+		
 		while (true)
 		{
 			lab.printLab();
@@ -21,9 +25,28 @@ public class main {
 			lab.randomMove(dd);
 			System.out.print("\n");
 			
+			if(czar.encounter(lab))
+			{
+				if(czar.isAlive(lab))
+				{
+					lab.getLab()[dd.getPosition()[0]][dd.getPosition()[1]] = ' ';
+					lab.printLab();
+					System.out.print("\n\n\n\nYOU WIN\n\n");
+					break;
+				}
+				else
+				{
+					lab.getLab()[czar.getPosition()[0]][czar.getPosition()[1]] = ' ';
+					lab.printLab();
+					System.out.print("\n\n\n\nYOU DIED\n\n");
+					return;
+				}
+					
+			}
+			
 			
 		}
-		
+		return;
 		 
 		
 		

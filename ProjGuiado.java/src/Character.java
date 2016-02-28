@@ -32,6 +32,26 @@ public class Character
 			break;
 		}
 	}
+	
+	public void setArmed()
+	{
+		
+	}
+	
+	public void setDisarmed()
+	{
+		
+	}
+	
+	public boolean isAlive(labirinth lab)
+	{
+		return true;
+	}
+	
+	public boolean encounter(labirinth lab)
+	{
+		return true;
+	}
 }
 
 

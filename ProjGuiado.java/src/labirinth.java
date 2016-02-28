@@ -33,9 +33,10 @@ public class labirinth
 			System.out.print('\n');
 		}
 	}
-	
+	/*
 	public boolean move(char direction, Character c)
 	{
+		if()
 		boolean ret = false;
 		switch (direction)
 		{
@@ -49,6 +50,7 @@ public class labirinth
 				ret = true;
 				
 			}
+
 			break;
 			
 		case 'D': 
@@ -88,6 +90,60 @@ public class labirinth
 		
 		System.out.print(c.getPosition()[1]);
 		System.out.print(c.getPosition()[0]);
+		
+		return ret;
+	}
+	*/
+	
+	public boolean  move(char direction, Character c)
+	{
+		int dx = 0;
+		int dy = 0;
+		
+		boolean ret = false;
+		
+		switch(direction)
+		{
+		case 'U':
+			dy = -1;
+			break;
+		
+		case 'D':
+			dy = 1;
+			break;
+			
+		case 'L':
+			dx = -1;
+			break;
+			
+		case 'R':
+			dx = 1;
+			break;
+			
+		default:
+			break;
+		}
+		
+		if(lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] == ' ')
+		{
+			lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+			lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] = c.getChar();
+			c.setPosition(direction);
+			ret = true;
+			return ret;
+		}
+		
+		if(lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] == 'E' && c.getChar() == 'H')
+		{
+			lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+			c.setArmed();
+			lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] = c.getChar();
+			c.setPosition(direction);
+			ret = true;
+			return ret;
+			
+			
+		}
 		
 		return ret;
 	}
