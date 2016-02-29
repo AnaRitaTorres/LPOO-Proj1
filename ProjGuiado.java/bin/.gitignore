@@ -1,6 +1,8 @@
 /Character.class
+/Dragon.class
+/Hero.class
+/Weapon.class
 /labirinth.class
 /main.class
-/Hero.class
-/Dragon.class
-/Weapon.class
+/GameState.class
+/GameState$State.class
