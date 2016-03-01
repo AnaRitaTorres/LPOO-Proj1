@@ -17,5 +17,14 @@ public class Dragon extends Character
 		return d;
 	}
 	
+	public void setState()
+	{
+		dState=false;
+	}
 	
+	public boolean getState()
+	{
+		return dState;
+	}
 }
+

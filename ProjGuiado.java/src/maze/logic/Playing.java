@@ -23,7 +23,12 @@ public class Playing {
 			System.out.print("\nMovement(U, D, L, R): ");
 			
 			char c = sc.next().charAt(0);
-			lab.randomMove(dd);
+			
+			if(dd.getState()== true)
+			{
+				lab.randomMove(dd);
+			}
+			
 			lab.move(c, czar);
 			
 			System.out.print("\n");
@@ -34,6 +39,7 @@ public class Playing {
 				{
 					lab.getLab()[dd.getPosition()[0]][dd.getPosition()[1]] = ' ';
 					lab.printLab();
+					dd.setState();
 					
 				}
 				else

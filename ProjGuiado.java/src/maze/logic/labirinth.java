@@ -167,7 +167,7 @@ public class labirinth
 		{
 			lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 			lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] = c.getChar();
-			End.update(lab);
+			End.update(labirinth.this);
 			
 			
 		}

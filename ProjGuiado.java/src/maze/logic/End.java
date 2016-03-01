@@ -7,7 +7,11 @@ public class End {
 	{
 		if(l.labirinthClear('D')==true)
 		{
-			
+			System.out.println("You Won!!!!! \n");
+		}
+		else 
+		{
+			System.out.println("You Lost!!!!! \n");
 		}
 	}
 
