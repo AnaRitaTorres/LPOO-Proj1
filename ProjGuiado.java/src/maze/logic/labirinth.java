@@ -143,7 +143,7 @@ public class labirinth
 			break;
 		}
 		
-		if(lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] == ' ')
+		if(lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] != 'X')
 		{
 			lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
 			lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] = c.getChar();
@@ -175,31 +175,6 @@ public class labirinth
 		return ret;
 	}
 	
-	public void randomMove(Character c)
-	{
-		boolean stop = false;
-		while(!stop)
-		{
-			switch(0 + (int)(Math.random() * ((3 - 0) + 1)))
-			{
-			case 0:
-				stop = move('U', c);
-				break;
-			
-			case 1:
-				stop = move('R', c);
-				break;
-			
-			case 2:
-				stop = move('L', c);
-				break;
-			
-			case 3:
-				stop = move('D', c);
-				break;
-			}
-		}
-		
-	}
+	
 
 }

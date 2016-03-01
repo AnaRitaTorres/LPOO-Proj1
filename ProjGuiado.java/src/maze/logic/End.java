@@ -13,6 +13,7 @@ public class End {
 		{
 			System.out.println("You Lost!!!!! \n");
 		}
+		l.printLab();
 	}
 
 }

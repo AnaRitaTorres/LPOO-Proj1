@@ -1,5 +1,7 @@
 package maze.logic;
 
+import maze.logic.Dragon.typeDragon;
+
 public class Character 
 {
 	
@@ -62,6 +64,16 @@ public class Character
 	public boolean getState()
 	{
 		return true;
+	}
+	
+	public void moveType(labirinth lab)
+	{
+		
+	}
+	
+	public void setType(typeDragon td)
+	{
+		
 	}
 }
 
