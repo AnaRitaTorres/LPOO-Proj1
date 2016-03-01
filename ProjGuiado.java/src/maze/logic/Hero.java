@@ -1,3 +1,4 @@
+package maze.logic;
 
 public class Hero extends Character 
 {
@@ -56,4 +57,12 @@ public class Hero extends Character
 			return true;
 	}
 	
+		
+	/*public boolean isOut(labirinth lab, Dragon d, Hero h)
+	{
+		if (getOut(d)== true)
+		{
+			if (h.getPosition())
+		}
+	}*/
 }

@@ -1,3 +1,4 @@
+package maze.logic;
 
 public class Character 
 {
@@ -49,6 +50,16 @@ public class Character
 	}
 	
 	public boolean encounter(labirinth lab)
+	{
+		return true;
+	}
+	
+	public void setState()
+	{
+		
+	}
+	
+	public boolean getState()
 	{
 		return true;
 	}

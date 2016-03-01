@@ -1,7 +1,9 @@
+package maze.logic;
 
 public class Dragon extends Character 
 {
 	private char d;
+	private boolean dState = true;
 	
 	public Dragon(int x, int y, char c)
 	{
@@ -14,4 +16,6 @@ public class Dragon extends Character
 	{
 		return d;
 	}
+	
+	
 }

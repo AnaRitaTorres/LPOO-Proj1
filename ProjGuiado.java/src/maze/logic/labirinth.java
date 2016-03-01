@@ -1,3 +1,4 @@
+package maze.logic;
 
 
 public class labirinth 
@@ -95,6 +96,24 @@ public class labirinth
 	}
 	*/
 	
+	
+	public boolean labirinthClear(char r)
+	{
+		boolean clear=true;
+		
+		for(int j=0; j < lab.length;j++)
+		{
+			for(int i=0; i < lab[j].length; i++)
+			{
+				if(lab[j][i] == r)
+					clear=false;
+			}
+		
+		}
+		
+		return clear;
+	}
+	
 	public boolean  move(char direction, Character c)
 	{
 		int dx = 0;
@@ -141,6 +160,14 @@ public class labirinth
 			c.setPosition(direction);
 			ret = true;
 			return ret;
+		}
+		
+		
+		if(lab[c.getPosition()[0]+ dy][c.getPosition()[1]+dx]=='S' && labirinthClear('D')== true )
+		{
+			lab[c.getPosition()[0]][c.getPosition()[1]] = ' ';
+			lab[c.getPosition()[0] + dy][c.getPosition()[1] + dx] = c.getChar();
+			End.update(lab);
 			
 			
 		}
