@@ -15,9 +15,9 @@ public class Playing
 		labirinth lab = new labirinth();
 		Character czar = new Hero(1, 1, 'H');
 		Character dd = new Dragon(8, 1, 'D');
-		Weapon sword = new Weapon(7, 1, 'E');
+		Weapon sword = new Weapon(5, 2, 'E');
 		
-		System.out.print("\nType of Dragon(Sleep(S), Static(T),Random(R):");
+		System.out.print("\nType of Dragon(Sleep(S), Static(T),Random(R)):");
 		
 		char s = sc.next().charAt(0);
 		
