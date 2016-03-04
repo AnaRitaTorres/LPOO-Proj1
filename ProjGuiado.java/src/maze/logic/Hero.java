@@ -58,11 +58,4 @@ public class Hero extends Character
 	}
 	
 		
-	/*public boolean isOut(labirinth lab, Dragon d, Hero h)
-	{
-		if (getOut(d)== true)
-		{
-			if (h.getPosition())
-		}
-	}*/
 }

@@ -1,5 +1,6 @@
 package maze.logic;
 
+import maze.cli.End;
 
 public class labirinth 
 {

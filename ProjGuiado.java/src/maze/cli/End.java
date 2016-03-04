@@ -1,5 +1,6 @@
-package maze.logic;
+package maze.cli;
 
+import maze.logic.labirinth;
 
 public class End {
 	

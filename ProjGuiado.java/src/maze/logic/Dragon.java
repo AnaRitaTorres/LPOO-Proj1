@@ -1,5 +1,7 @@
 package maze.logic;
 
+import maze.cli.End;
+
 public class Dragon extends Character 
 {
 	private char d;
