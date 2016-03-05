@@ -11,8 +11,13 @@ public class Play
 	
 	public void gamePlay()
 	{
+		maze.printCell(h.getCharacterPosition(),h);
+		maze.printCell(d.getCharacterPosition(), d);
+		
+		
 		i.printMaze(maze);
 		maze.moveHandler(h);
+		i.printMaze(maze);
 	}
 	
 
