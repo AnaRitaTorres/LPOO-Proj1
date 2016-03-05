@@ -1,6 +1,7 @@
 package maze.logic;
 
-public class Point {
+public class Point 
+{
 	int x;
 	int y;
 

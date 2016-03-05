@@ -1,6 +1,7 @@
 package maze.logic;
 
-public class MovementType {
+public class MovementType 
+{
 
 	public enum movementType
 	{

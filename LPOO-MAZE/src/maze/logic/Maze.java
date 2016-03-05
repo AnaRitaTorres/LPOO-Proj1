@@ -3,12 +3,11 @@ package maze.logic;
 import maze.cli.Interface;
 import maze.logic.MovementType.movementType;
 
-public class Maze {
+public class Maze 
+{
 	
 	private char[][] maze;
-	private Hero h = new Hero(1,1,'H');
-	private Dragon d = new Dragon (8,1,'D');
-	private Interface i;
+	private Interface i= new Interface();
 	
 	public Maze()
 	{ 		
@@ -55,8 +54,6 @@ public class Maze {
 			return false;
 		else return true;
 	}
-	
-	
 	
 	public void move(movementType mt, Character c)
 	{

@@ -3,9 +3,8 @@ package maze.cli;
 import java.util.Scanner;
 import maze.logic.Maze;
 
-public class Interface {
-	
-	Maze maze = new Maze();
+public class Interface 
+{
 	
 	public void printMaze(Maze maze)
 	{
@@ -25,21 +24,10 @@ public class Interface {
 		System.out.print("\n Direction ( Up(U), Down (D), Left(L), Right(R)):");
 		Scanner sc = new Scanner(System.in);
 		char s = sc.next().charAt(0);
+		sc.close();
 		return s;
-	}
-	
-	public void play()
-	{
-		
-		printMaze(maze);
-		//Scanner sc = new Scanner(System.in);
-		//System.out.print("\nType of Dragon(Sleep(S), Static(T),Random(R)):");
-		//char s = sc.next().charAt(0);
-		
-		
-		
 		
 	}
-	
-
 }
+	
+	

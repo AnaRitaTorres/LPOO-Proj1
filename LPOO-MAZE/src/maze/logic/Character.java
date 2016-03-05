@@ -1,7 +1,7 @@
 package maze.logic;
 
-public class Character {
-	
+public class Character 
+{	
 	protected Point position;
 	protected char c;
 	private static CharacterType type;
@@ -20,7 +20,8 @@ public class Character {
 	{
 		position =p;
 	}
-	char getChar ()
+	
+    char getChar ()
 	{
 		return c;
 	}

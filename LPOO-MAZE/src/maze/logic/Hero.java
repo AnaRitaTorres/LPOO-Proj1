@@ -1,6 +1,7 @@
 package maze.logic;
 
-public class Hero extends Character {
+public class Hero extends Character 
+{
 	
 	
 	public Hero(int x, int y, char c)

@@ -1,6 +1,7 @@
 package maze.logic;
 
-public class Dragon extends Character {
+public class Dragon extends Character 
+{
 		
 	public Dragon(int x, int y, char c)
 	{
