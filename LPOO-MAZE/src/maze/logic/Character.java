@@ -2,18 +2,26 @@ package maze.logic;
 
 public class Character {
 	
-	private Point position;
+	protected Point position;
+	protected char c;
 	private static CharacterType type;
+	
+	CharacterType getType()
+	{
+		return type;
+	}
 	
 	Point getCharacterPosition()
 	{
 		return position;
 	}
 	
-	CharacterType getType()
+	void setCharacterPosition(Point p)
 	{
-		return type;
+		position =p;
 	}
-
-	
+	char getChar ()
+	{
+		return c;
+	}
 }
