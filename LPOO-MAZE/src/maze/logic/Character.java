@@ -20,7 +20,10 @@ public class Character
 		return state;
 	}
 	
-	
+	public void setState(characterState cs)
+	{
+		state = cs;
+	}
 	
 	Point getCharacterPosition()
 	{
