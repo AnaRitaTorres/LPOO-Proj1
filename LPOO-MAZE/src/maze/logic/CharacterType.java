@@ -6,7 +6,7 @@ public class CharacterType
 	{
 		DRAGON,HERO
 	}
-
+	
 	public static final CharacterType HERO = null;
 	public static final CharacterType DRAGON = null;
 }

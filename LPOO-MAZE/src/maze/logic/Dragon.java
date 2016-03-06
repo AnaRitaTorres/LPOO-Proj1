@@ -1,5 +1,7 @@
 package maze.logic;
 
+import maze.logic.CharacterState.characterState;
+
 public class Dragon extends Character 
 {
 		
@@ -7,6 +9,7 @@ public class Dragon extends Character
 	{
 		this.c = c;
 		position = new Point(x,y);
+		state = characterState.ALIVE;
 	}
 	
 	char getChar()

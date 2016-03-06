@@ -1,15 +1,26 @@
 package maze.logic;
 
+import maze.logic.CharacterState.characterState;
+import maze.logic.CharacterType.characterType;
+
 public class Character 
 {	
 	protected Point position;
 	protected char c;
-	private static CharacterType type;
+	protected static characterType type;
+	protected static characterState state;
 	
-	CharacterType getType()
+	characterType getType()
 	{
 		return type;
 	}
+	
+	characterState getState()
+	{
+		return state;
+	}
+	
+	
 	
 	Point getCharacterPosition()
 	{
