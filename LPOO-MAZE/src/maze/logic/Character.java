@@ -3,19 +3,19 @@ package maze.logic;
 import maze.logic.CharacterState.characterState;
 import maze.logic.CharacterType.characterType;
 
-public class Character 
+public class Character
 {	
 	protected Point position;
 	protected char c;
 	protected static characterType type;
 	protected static characterState state;
 	
-	characterType getType()
+	public characterType getType()
 	{
 		return type;
 	}
 	
-	characterState getState()
+	public characterState getState()
 	{
 		return state;
 	}
@@ -25,18 +25,34 @@ public class Character
 		state = cs;
 	}
 	
-	Point getCharacterPosition()
+	public Point getCharacterPosition()
 	{
 		return position;
 	}
 	
-	void setCharacterPosition(Point p)
+	public void setCharacterPosition(Point p)
 	{
 		position =p;
 	}
 	
-    char getChar ()
+	public char getChar ()
 	{
 		return c;
 	}
+    
+	public void setChar()
+	{
+		
+	}
+	
+	public void setArmed()
+	{
+		
+	}
+	
+	public void setDisarmed()
+	{
+		
+	}
+    
 }

@@ -3,6 +3,7 @@ package maze.logic;
 import maze.cli.Interface;
 import maze.logic.CharacterState.characterState;
 
+
 public class Play 
 {
 	private Interface i = new Interface();
@@ -10,6 +11,14 @@ public class Play
 	private Hero h = new Hero(1,1,'H');
 	private Dragon d = new Dragon (8,1,'D');
 	private Weapon w = new Weapon (1, 3, 'E');
+	
+	public boolean pointEquals(Point p1, Point p2)
+	{
+		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
+			return true;
+		else
+			return false;
+	}
 	
 	public boolean isDragonDead()
 	{
@@ -23,17 +32,22 @@ public class Play
 	
 	public void updateGame()
 	{
-		int dx = Math.abs(h.getCharacterPosition().x - d.getCharacterPosition().x);
-		int dy = Math.abs(h.getCharacterPosition().y - d.getCharacterPosition().y);
+		int dx = Math.abs(h.getCharacterPosition().getX() - d.getCharacterPosition().getX());
+		int dy = Math.abs(h.getCharacterPosition().getY() - d.getCharacterPosition().getY());
+		System.out.print(dx);
+		System.out.print(dy);
 		
-		if(h.getCharacterPosition() == w.getPosition())
+		if(pointEquals(h.getCharacterPosition(), w.getPosition()))
 		{
+			System.out.print("p&b");
 			h.setState(characterState.ARMED);
-			h.setArmed('A');
+			h.setArmed();
 			w.eraseWeapon();
+			maze.printCell(w.getPosition(), 'A');
+			
 		}
 		
-		if(dx == 1 || dy == 1)
+		if(dx <= 1 && dy <= 1)
 		{
 			System.out.print("next");
 			if(h.getState() == characterState.ALIVE)
@@ -43,7 +57,6 @@ public class Play
 			
 			if(h.getState() == characterState.ARMED)
 			{
-				System.out.print("kill");
 				d.setState(characterState.DEAD);
 			}
 		}
@@ -68,8 +81,7 @@ public class Play
 			updateGame();
 			
 			i.printMaze(maze);
-			System.out.print(h.getCharacterPosition().x);
-			System.out.print(h.getCharacterPosition().y);
+			
 			if(h.getState()== characterState.DEAD)
 			{
 				run = false;

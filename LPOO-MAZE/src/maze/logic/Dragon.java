@@ -12,17 +12,17 @@ public class Dragon extends Character
 		state = characterState.ALIVE;
 	}
 	
-	char getChar()
+	public char getChar()
 	{
 		return c;
 	}
 	
-	void setChar(char c)
+	public void setChar(char c)
 	{
 		this.c=c;
 	}
 	
-	void setSleep(char c)
+	public void setSleep(char c)
 	{
 		setChar(c);
 	}

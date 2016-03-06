@@ -13,23 +13,18 @@ public class Hero extends Character
 		state = characterState.ALIVE;
 	}
 	
-	char getChar()
+	public char getChar()
 	{
 		return c;
 	}
 	
-	void setChar(char c)
+	public void setArmed()
 	{
-		this.c=c;
+		c = 'A';
 	}
 	
-	void setArmed(char c)
+	public void setDisarmed()
 	{
-		setChar(c);
-	}
-	
-	void setDisarmed(char c)
-	{
-		setChar(c);
+		c = 'H';
 	}
 }

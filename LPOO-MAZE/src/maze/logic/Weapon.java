@@ -16,10 +16,6 @@ public class Weapon
 		return c;
 	}
 	
-	void setChar(char c)
-	{
-		this.c=c;
-	}
 	
 	public Point getPosition()
 	{
@@ -28,6 +24,6 @@ public class Weapon
 	
 	public void eraseWeapon()
 	{
-		setChar(' ');
+		c = ' ';
 	}
 }
