@@ -44,9 +44,9 @@ public class Maze
 		maze[p.getY()][p.getX()]=' ';
 	}
 	
-	public void printCell(Point p,Character c)
+	public void printCell(Point p,char c)
 	{
-		maze[p.getY()][p.getX()]= c.getChar();
+		maze[p.getY()][p.getX()]= c;
 	}
 	
 	public boolean isFree(Point p)
@@ -92,10 +92,11 @@ public class Maze
 		{
 			clearCell(c.getCharacterPosition());
 			c.setCharacterPosition(s);
-			printCell(s,c);
+			printCell(s,c.getChar());
 			return true;
 		}
-		return false;
+		else
+			return false;
 		
 	}
 	
@@ -161,8 +162,5 @@ public class Maze
 				
 		}
 	}
-	
-	
-	
 	
 }

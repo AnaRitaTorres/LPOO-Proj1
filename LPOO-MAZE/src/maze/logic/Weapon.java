@@ -20,4 +20,14 @@ public class Weapon
 	{
 		this.c=c;
 	}
+	
+	public Point getPosition()
+	{
+		return position;
+	}
+	
+	public void eraseWeapon()
+	{
+		setChar(' ');
+	}
 }
