@@ -1,6 +1,7 @@
 package maze.logic;
 
 import maze.cli.Interface;
+import maze.logic.CharacterState.characterState;
 import maze.logic.MovementType.movementType;
 
 public class Maze 
@@ -50,12 +51,12 @@ public class Maze
 	
 	public boolean isFree(Point p)
 	{
-		if(maze[p.getY()][p.getX()]=='X')
+		if(maze[p.getY()][p.getX()] == 'X')
 			return false;
 		else return true;
 	}
 	
-	public void move(movementType mt, Character c)
+	public boolean move(movementType mt, Character c)
 	{
 		Point s = new Point (0,0) ;
 		
@@ -92,8 +93,44 @@ public class Maze
 			clearCell(c.getCharacterPosition());
 			c.setCharacterPosition(s);
 			printCell(s,c);
+			return true;
 		}
+		return false;
 		
+	}
+	
+	public void moveRandom(Character c)
+	{
+		
+		boolean valid_move = false;
+		
+		while(!valid_move)
+		{
+			int random = (int )(Math.random() * 4);
+			
+			switch(random)
+			{
+			case 0:
+				valid_move = move(movementType.UP,c);
+				break;
+				
+			case 1:
+				valid_move = move(movementType.DOWN,c);
+				break;
+				
+			case 2:
+				valid_move = move(movementType.LEFT,c);
+				break;
+				
+			case 3:
+				valid_move = move(movementType.RIGHT,c);
+				break;
+				
+			default:
+				break;
+				
+			}
+		}
 	}
 
 	public void moveHandler(Character f)
@@ -104,12 +141,28 @@ public class Maze
 		{	
 			case'U':
 				move(movementType.UP,f);
+				break;
+				
 			case'D':
 				move(movementType.DOWN,f);
+				break;
+				
 			case'L':
 				move(movementType.LEFT,f);
+				break;
+				
 			case'R':
 				move(movementType.RIGHT,f);
+				break;
+				
+			default:
+				break;
+					
+				
 		}
 	}
+	
+	
+	
+	
 }

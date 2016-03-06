@@ -21,13 +21,13 @@ public class Interface
 	
 	public char readMove()
 	{
-		System.out.print("\n Direction ( Up(U), Down (D), Left(L), Right(R)):");
+		System.out.print("\nDirection ( Up(U), Down (D), Left(L), Right(R)): ");
 		Scanner sc = new Scanner(System.in);
 		char s = sc.next().charAt(0);
-		sc.close();
+		//sc.close();
 		return s;
 		
 	}
 }
-	
+
 	
