@@ -34,12 +34,9 @@ public class Play
 	{
 		int dx = Math.abs(h.getCharacterPosition().getX() - d.getCharacterPosition().getX());
 		int dy = Math.abs(h.getCharacterPosition().getY() - d.getCharacterPosition().getY());
-		System.out.print(dx);
-		System.out.print(dy);
 		
 		if(pointEquals(h.getCharacterPosition(), w.getPosition()))
 		{
-			System.out.print("p&b");
 			h.setState(characterState.ARMED);
 			h.setArmed();
 			w.eraseWeapon();
@@ -49,7 +46,7 @@ public class Play
 		
 		if(dx <= 1 && dy <= 1)
 		{
-			System.out.print("next");
+			System.out.print("\nNigga get in here now\n");
 			if(h.getState() == characterState.ALIVE)
 			{
 				h.setState(characterState.DEAD);
@@ -60,6 +57,7 @@ public class Play
 				d.setState(characterState.DEAD);
 			}
 		}
+		
 	}
 	
 	
@@ -69,20 +67,27 @@ public class Play
 		maze.printCell(d.getCharacterPosition(), d.getChar());
 		maze.printCell(w.getPosition(), w.getChar());
 		
+		
+		
+		
 		i.printMaze(maze);
+		
+		
 		
 		boolean run = true;
 		
 		while(run)
 		{
 			maze.moveHandler(h);
-			maze.moveRandom(d);
+			
+			if(d.getState() == characterState.ALIVE)
+				maze.moveRandom(d);
 			
 			updateGame();
 			
 			i.printMaze(maze);
 			
-			if(h.getState()== characterState.DEAD)
+			if(h.getState() == characterState.DEAD)
 			{
 				run = false;
 				System.out.print("ded");

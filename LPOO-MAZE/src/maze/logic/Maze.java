@@ -49,9 +49,17 @@ public class Maze
 		maze[p.getY()][p.getX()]= c;
 	}
 	
+	public boolean isOutOfBounds(Point p)
+	{
+		if(p.getY() > maze.length -1  || p.getY() < 0 || p.getX() > maze[0].length -1 || p.getX() < 0)
+			return true;
+		else
+			return false;
+	}
+	
 	public boolean isFree(Point p)
 	{
-		if(maze[p.getY()][p.getX()] == 'X')
+		if(maze[p.getY()][p.getX()] == 'X' || isOutOfBounds(p))
 			return false;
 		else return true;
 	}
