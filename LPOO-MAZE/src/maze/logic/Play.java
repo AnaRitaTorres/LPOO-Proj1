@@ -22,6 +22,11 @@ public class Play
 			return false;
 	}
 	
+	public Hero getHero()
+	{
+		return h;
+	}
+	
 	public boolean isDragonDead()
 	{
 		if(d.getState() == characterState.DEAD)
