@@ -3,12 +3,14 @@ package maze.logic;
 import maze.cli.Interface;
 import maze.logic.CharacterState.characterState;
 import maze.logic.MovementType.movementType;
+import maze.logic.Point;
 
 public class Maze 
 {
 	
 	private char[][] maze;
 	private Interface i= new Interface();
+	private Point out;
 	
 	public Maze()
 	{ 		
@@ -26,12 +28,14 @@ public class Maze
 			{'X','X','X','X','X','X','X','X','X','X'}};
 	
 	maze = lab;
+	this.out= getExit();
 		
 	}
 	
 	public Maze(char[][] maze)
 	{
 		this.maze = maze;
+		this.out= getExit();
 	}
 	
 	public char[][] getMaze()
@@ -169,6 +173,25 @@ public class Maze
 					
 				
 		}
+	}
+	
+	public Point getExit()
+	{
+		Point p = new Point (0,0);
+		
+		for(int i=0; i < maze.length; i++)
+		{
+			for (int j=0; j < maze[i].length; j++)
+			{
+				if (maze[i][j]== 'S')
+				{
+					p.setX(j);
+					p.setY(i);
+				}
+			}	
+		}
+		
+		return p;
 	}
 	
 }

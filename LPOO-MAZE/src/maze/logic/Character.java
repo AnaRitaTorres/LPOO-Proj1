@@ -7,8 +7,8 @@ public class Character
 {	
 	protected Point position;
 	protected char c;
-	protected static characterType type;
-	protected static characterState state;
+	protected characterType type;
+	protected characterState state;
 	
 	public characterType getType()
 	{

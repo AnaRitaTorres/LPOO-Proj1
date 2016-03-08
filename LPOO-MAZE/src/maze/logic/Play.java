@@ -12,6 +12,7 @@ public class Play
 	private Dragon d = new Dragon (8,1,'D');
 	private Weapon w = new Weapon (1, 3, 'E');
 	
+	
 	public boolean pointEquals(Point p1, Point p2)
 	{
 		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
@@ -46,15 +47,15 @@ public class Play
 		
 		if(dx <= 1 && dy <= 1)
 		{
-			System.out.print("\nNigga get in here now\n");
 			if(h.getState() == characterState.ALIVE)
 			{
 				h.setState(characterState.DEAD);
 			}
 			
-			if(h.getState() == characterState.ARMED)
+			if(h.getState() == characterState.ARMED && d.getState()== characterState.ALIVE)
 			{
 				d.setState(characterState.DEAD);
+				maze.clearCell(d.getCharacterPosition());
 			}
 		}
 		
@@ -90,7 +91,7 @@ public class Play
 			if(h.getState() == characterState.DEAD)
 			{
 				run = false;
-				System.out.print("ded");
+				System.out.print("You're Dead!\n");
 			}
 			
 		}
