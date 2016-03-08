@@ -5,6 +5,7 @@ import maze.logic.Maze;
 
 public class Interface 
 {
+	Scanner sc = new Scanner(System.in);
 	
 	public void printMaze(Maze maze)
 	{
@@ -22,11 +23,18 @@ public class Interface
 	public char readMove()
 	{
 		System.out.print("\nDirection ( Up(U), Down (D), Left(L), Right(R)): ");
-		Scanner sc = new Scanner(System.in);
+		
 		char s = sc.next().charAt(0);
 		//sc.close();
 		return s;
 		
+	}
+	
+	public char readGameState()
+	{
+		System.out.print("\nGame Mode? ( STATIC(T), SLEEP(S), RANDOM(R)): ");
+		char s = sc.next().charAt(0);
+		return s;
 	}
 }
 

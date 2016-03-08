@@ -1,10 +1,8 @@
 package maze.logic;
 
 import maze.cli.Interface;
-import maze.logic.CharacterState.characterState;
 import maze.logic.MovementType.movementType;
 import maze.logic.Point;
-import maze.logic.Play;
 
 public class Maze 
 {

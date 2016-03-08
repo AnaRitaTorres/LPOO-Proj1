@@ -11,3 +11,4 @@ public class GameState
 	public static final  GameState STATIC = null;
 	public static final  GameState RANDOM = null;
 }
+
