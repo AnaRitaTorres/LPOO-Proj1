@@ -62,6 +62,10 @@ public class Play
 		
 	}
 	
+	public void setState(gameState g)
+	{
+		gameType = g;
+	}
 	public void gameStateHandler()
 	{
 		char c = i.readGameState();

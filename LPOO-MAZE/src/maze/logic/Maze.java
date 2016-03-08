@@ -65,7 +65,7 @@ public class Maze
 			return false;
 	}
 	
-	public boolean isFree(Point p)
+	public boolean isCellFree(Point p)
 	{
 		if(maze[p.getY()][p.getX()] == 'X' || isOutOfBounds(p))
 			return false;
@@ -104,7 +104,7 @@ public class Maze
 			break;
 		}
 		
-		if(isFree(s)== true)
+		if(isCellFree(s)== true)
 		{
 			clearCell(c.getCharacterPosition());
 			c.setCharacterPosition(s);
