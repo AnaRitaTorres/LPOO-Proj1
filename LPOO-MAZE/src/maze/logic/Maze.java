@@ -4,6 +4,7 @@ import maze.cli.Interface;
 import maze.logic.CharacterState.characterState;
 import maze.logic.MovementType.movementType;
 import maze.logic.Point;
+import maze.logic.Play;
 
 public class Maze 
 {
@@ -11,7 +12,7 @@ public class Maze
 	private char[][] maze;
 	private Interface i= new Interface();
 	private Point out;
-	
+		
 	public Maze()
 	{ 		
 		char lab[][] = 
@@ -41,6 +42,11 @@ public class Maze
 	public char[][] getMaze()
 	{
 		return maze;
+	}
+	
+	public Point getOut()
+	{
+		return out;
 	}
 	
 	public void clearCell(Point p)
@@ -175,6 +181,14 @@ public class Maze
 		}
 	}
 	
+	public boolean pointEquals(Point p1, Point p2)
+	{
+		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
+			return true;
+		else
+			return false;
+	}
+	
 	public Point getExit()
 	{
 		Point p = new Point (0,0);
@@ -192,6 +206,15 @@ public class Maze
 		}
 		
 		return p;
+	}
+	
+	public void dragonWeapon(Dragon d,Weapon w)
+	{
+		if(pointEquals(w.getPosition(),d.getCharacterPosition()))
+		{
+			printCell(w.getPosition(), 'F');
+		}
+		
 	}
 	
 }

@@ -10,7 +10,7 @@ public class Play
 	private Maze maze = new Maze();
 	private Hero h = new Hero(1,1,'H');
 	private Dragon d = new Dragon (8,1,'D');
-	private Weapon w = new Weapon (1, 3, 'E');
+	private Weapon w = new Weapon (1,2,'E');
 	
 	
 	public boolean pointEquals(Point p1, Point p2)
@@ -68,9 +68,6 @@ public class Play
 		maze.printCell(d.getCharacterPosition(), d.getChar());
 		maze.printCell(w.getPosition(), w.getChar());
 		
-		
-		
-		
 		i.printMaze(maze);
 		
 		
@@ -84,14 +81,23 @@ public class Play
 			if(d.getState() == characterState.ALIVE)
 				maze.moveRandom(d);
 			
-			updateGame();
+			maze.printCell(w.getPosition(), w.getChar());
 			
+			updateGame();
+			maze.dragonWeapon(d, w);
 			i.printMaze(maze);
 			
-			if(h.getState() == characterState.DEAD)
+			if(h.getState() == characterState.DEAD )
 			{
 				run = false;
-				System.out.print("You're Dead!\n");
+				System.out.print("\nYou're Dead!\n");
+			}
+			
+			
+			if (d.getState()==characterState.DEAD && pointEquals(maze.getOut(), h.getCharacterPosition()))
+			{
+				run=false;
+				System.out.print("\nYou Won The Games!\n");
 			}
 			
 		}
