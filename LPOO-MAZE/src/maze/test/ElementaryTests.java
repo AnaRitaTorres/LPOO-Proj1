@@ -48,6 +48,12 @@ public class ElementaryTests
 		
 	}
 	
+	@Test
+	public void disarmedHero()
+	{
+		
+			
+	}
 	
 	
 	

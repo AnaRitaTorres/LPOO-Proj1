@@ -37,11 +37,8 @@ public class Play
 		return true;
 	}
 	
-	public void updateGame()
+	public void checkArmed()
 	{
-		int dx = Math.abs(h.getCharacterPosition().getX() - d.getCharacterPosition().getX());
-		int dy = Math.abs(h.getCharacterPosition().getY() - d.getCharacterPosition().getY());
-		
 		if(pointEquals(h.getCharacterPosition(), w.getPosition()))
 		{
 			h.setState(characterState.ARMED);
@@ -50,6 +47,13 @@ public class Play
 			maze.printCell(w.getPosition(), 'A');
 			
 		}
+	}
+	public void updateGame()
+	{
+		int dx = Math.abs(h.getCharacterPosition().getX() - d.getCharacterPosition().getX());
+		int dy = Math.abs(h.getCharacterPosition().getY() - d.getCharacterPosition().getY());
+		
+		checkArmed();
 		
 		if(dx <= 1 && dy <= 1)
 		{
