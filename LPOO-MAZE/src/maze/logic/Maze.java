@@ -69,8 +69,15 @@ public class Maze
 	{
 		if(maze[p.getY()][p.getX()] == 'X' || isOutOfBounds(p))
 			return false;
+		if (aliveDragon()&& maze[p.getY()][p.getX()] == 'S')
+			return false;
 		else return true;
+		
+		
 	}
+	
+	
+	
 	
 	public boolean move(movementType mt, Character c)
 	{
@@ -204,6 +211,22 @@ public class Maze
 		}
 		
 		return p;
+	}
+	
+	public boolean aliveDragon()
+	{
+		boolean c = false;
+		
+		for(int i=0; i < maze.length; i++)
+		{
+			for (int j=0; j < maze[i].length; j++)
+			{
+				if (maze[i][j]== 'D' || maze[i][j]== 'd' || maze[i][j]== 'F')
+					c=true;
+			}	
+		}
+		
+		return c;
 	}
 	
 	public void dragonWeapon(Dragon d,Weapon w)

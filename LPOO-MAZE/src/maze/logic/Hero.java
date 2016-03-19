@@ -10,7 +10,7 @@ public class Hero extends Character
 	{
 		this.c = c;
 		position = new Point(x,y);
-		state = characterState.ALIVE;
+		state = characterState.DISARMED;
 	}
 	
 	public char getChar()

@@ -26,6 +26,10 @@ public class Play
 	{
 		return h;
 	}
+	public Dragon getDragon()
+	{
+		return d;
+	}
 	
 	public boolean isDragonDead()
 	{
@@ -39,6 +43,8 @@ public class Play
 	
 	public void checkArmed()
 	{
+		if (h.getState()== characterState.ARMED)
+			return;
 		if(pointEquals(h.getCharacterPosition(), w.getPosition()))
 		{
 			h.setState(characterState.ARMED);
@@ -46,6 +52,11 @@ public class Play
 			w.eraseWeapon();
 			maze.printCell(w.getPosition(), 'A');
 			
+		}
+		else
+		{
+			h.setState(characterState.DISARMED);
+			h.setDisarmed();
 		}
 	}
 	public void updateGame()
@@ -57,7 +68,7 @@ public class Play
 		
 		if(dx <= 1 && dy <= 1)
 		{
-			if(h.getState() == characterState.ALIVE)
+			if(h.getState()== characterState.DISARMED)
 			{
 				h.setState(characterState.DEAD);
 			}
@@ -70,11 +81,16 @@ public class Play
 		}
 		
 	}
+	public gameState getGameType()
+	{
+		return gameType;
+	}
 	
 	public void setState(gameState g)
 	{
 		gameType = g;
 	}
+	
 	public void gameStateHandler()
 	{
 		char c = i.readGameState();
@@ -108,6 +124,15 @@ public class Play
 			return true;
 	}
 	
+	public boolean didntCompleteMission()
+	{
+		if (maze.aliveDragon()==true)
+		{
+			return false;
+		}
+		else return true;
+	}
+	
 	public void gamePlay()
 	{
 		maze.printCell(h.getCharacterPosition(),h.getChar());
@@ -118,9 +143,9 @@ public class Play
 		
 		i.printMaze(maze);
 		
-		boolean run = true;
 		
-		while(run)
+		
+		while(gameType!=gameState.OVER)
 		{
 			maze.moveHandler(h);
 			
@@ -144,20 +169,26 @@ public class Play
 			updateGame();
 			maze.dragonWeapon(d, w);
 			
-			maze.printCell(d.getCharacterPosition(), d.getChar());
+			if(d.getState()== characterState.ALIVE)
+			{
+				maze.printCell(d.getCharacterPosition(), d.getChar());
+			}
+			
 			i.printMaze(maze);
 			
 			if(h.getState() == characterState.DEAD )
 			{
-				run = false;
+				setState(gameType.OVER);
 				System.out.print("\nYou're Dead!\n");
+				
 			}
 			
 			
 			if (d.getState()==characterState.DEAD && pointEquals(maze.getOut(), h.getCharacterPosition()))
 			{
-				run=false;
-				System.out.print("\nYou Won The Games!\n");
+				setState(gameType.OVER);
+				System.out.print("\nYou Won The Game!\n");
+				
 			}
 			
 		}
