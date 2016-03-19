@@ -17,6 +17,7 @@ public class ElementaryTests
 	private Maze m = new Maze();
 	private Interface i = new Interface();
 	private Play p = new Play();
+	
 
 	//a.
 	@Test
@@ -114,35 +115,74 @@ public class ElementaryTests
 		assertEquals(true,m.pointEquals(m.getOut(), p.getHero().getCharacterPosition()));
 	}
 	
-//	@Test
-//	public void cantGetOutDisarmed()
-//	{
-//		p.setState(gameState.STATIC);
-//		m.move(movementType.RIGHT, p.getHero());
-//		m.move(movementType.RIGHT, p.getHero());
-//		m.move(movementType.RIGHT, p.getHero());
-//		
-//		for( int i =0; i < 8; i++)
-//		{
-//			m.move(movementType.DOWN, p.getHero());
-//		}
-//		
-//		m.move(movementType.RIGHT, p.getHero());
-//		m.move(movementType.RIGHT, p.getHero());
-//		m.move(movementType.RIGHT, p.getHero());
-//		m.move(movementType.RIGHT, p.getHero());
-//		
-//		m.move(movementType.UP, p.getHero());
-//		m.move(movementType.UP, p.getHero());
-//		m.move(movementType.UP, p.getHero());
-//		
-//		m.move(movementType.RIGHT, p.getHero());
-//		
-//		Point y = new Point (5,8);
-//		p.updateGame();
-//				
-//		assertEquals(true,m.pointEquals(y, p.getHero().getCharacterPosition()));
-//	}
+	@Test
+	public void cantGetOutDisarmed()
+	{
+		
+		m.printCell(p.getDragon().getCharacterPosition(), p.getDragon().getChar());
+		
+		p.setState(gameState.STATIC);
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		
+		for( int i =0; i < 8; i++)
+		{
+			m.move(movementType.DOWN, p.getHero());
+		}
+		
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		
+		m.move(movementType.UP, p.getHero());
+		m.move(movementType.UP, p.getHero());
+		m.move(movementType.UP, p.getHero());
+		
+		m.move(movementType.RIGHT, p.getHero());
+		
+		Point y = new Point (8,5);
+		p.updateGame();
+				
+		assertEquals(true,m.pointEquals(y, p.getHero().getCharacterPosition()));
+	}
+	
+	@Test 
+	public void cantGetOutArmed()
+	{
+		m.printCell(p.getDragon().getCharacterPosition(), p.getDragon().getChar());
+		
+		catchSword();
+		
+		m.move(movementType.UP, p.getHero());
+		
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		
+		for( int i =0; i < 8; i++)
+		{
+			m.move(movementType.DOWN, p.getHero());
+		}
+		
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		m.move(movementType.RIGHT, p.getHero());
+		
+		m.move(movementType.UP, p.getHero());
+		m.move(movementType.UP, p.getHero());
+		m.move(movementType.UP, p.getHero());
+		
+		m.move(movementType.RIGHT, p.getHero());
+		
+		Point y = new Point (8,5);
+		p.updateGame();
+				
+		assertEquals(true,m.pointEquals(y, p.getHero().getCharacterPosition()));
+		
+	}
 
 
 
