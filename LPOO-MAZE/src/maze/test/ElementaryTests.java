@@ -17,8 +17,8 @@ public class ElementaryTests
 	private Maze m = new Maze();
 	private Interface i = new Interface();
 	private Play p = new Play();
-	
 
+	//2.1
 	//a.
 	@Test
 	public void freeCell()
@@ -73,7 +73,7 @@ public class ElementaryTests
 
 
 	}
-	
+
 	//e.
 	@Test
 	public void armedAndKills()
@@ -97,14 +97,14 @@ public class ElementaryTests
 		assertEquals(characterState.ARMED,p.getHero().getState());
 
 	}
-	
+
 	//f.
 	@Test
 	public void movesToExit()
 	{
 		armedAndKills();
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		for (int i=0; i < 4; i++)
 		{
 			m.move(movementType.DOWN, p.getHero());
@@ -114,77 +114,116 @@ public class ElementaryTests
 		assertEquals(p.getDragon().getState(),characterState.DEAD );
 		assertEquals(true,m.pointEquals(m.getOut(), p.getHero().getCharacterPosition()));
 	}
-	
+
+	//g.
 	@Test
 	public void cantGetOutDisarmed()
 	{
-		
+
 		m.printCell(p.getDragon().getCharacterPosition(), p.getDragon().getChar());
-		
+
 		p.setState(gameState.STATIC);
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		for( int i =0; i < 8; i++)
 		{
 			m.move(movementType.DOWN, p.getHero());
 		}
-		
+
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		m.move(movementType.UP, p.getHero());
 		m.move(movementType.UP, p.getHero());
 		m.move(movementType.UP, p.getHero());
-		
+
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		Point y = new Point (8,5);
 		p.updateGame();
-				
+
 		assertEquals(true,m.pointEquals(y, p.getHero().getCharacterPosition()));
 	}
-	
+
+	//h.
 	@Test 
 	public void cantGetOutArmed()
 	{
 		m.printCell(p.getDragon().getCharacterPosition(), p.getDragon().getChar());
-		
+
 		catchSword();
-		
+
 		m.move(movementType.UP, p.getHero());
-		
+
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		for( int i =0; i < 8; i++)
 		{
 			m.move(movementType.DOWN, p.getHero());
 		}
-		
+
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		m.move(movementType.UP, p.getHero());
 		m.move(movementType.UP, p.getHero());
 		m.move(movementType.UP, p.getHero());
-		
+
 		m.move(movementType.RIGHT, p.getHero());
-		
+
 		Point y = new Point (8,5);
 		p.updateGame();
-				
+
 		assertEquals(true,m.pointEquals(y, p.getHero().getCharacterPosition()));
-		
+
 	}
 
+	//2.2
 
+	@Test(timeout=1000)
+	public void testRandomMode()
+	{
+		boolean dragonMove = true;
+		p.setState(gameState.RANDOM);
 
+		while ((p.getGameType()!=gameState.WON && p.getGameType()!=gameState.LOST )&& dragonMove)
+		{
+			Point o = new Point (p.getDragon().getCharacterPosition().getY(),p.getDragon().getCharacterPosition().getX());
+			if(p.getHero().getState()== characterState.ARMED ||p.getHero().getState()== characterState.DISARMED)
+				m.moveRandom(p.getHero());
+			p.updateGame();
+			if (p.getDragon().getState()==characterState.ALIVE)
+				m.moveRandom(p.getDragon());
+			p.updateGame();
+			if(m.pointEquals(p.getDragon().getCharacterPosition(),o)&& p.getDragon().getState()==characterState.ALIVE)
+				dragonMove=false;
 
+			if(p.getHero().getState() == characterState.DEAD )
+			{
+				p.setState(gameState.LOST);
+			}
+
+			if (p.getDragon().getState()==characterState.DEAD && m.pointEquals(m.getOut(), p.getHero().getCharacterPosition()))
+			{
+				p.setState(gameState.WON);
+			}
+		}
+
+		assertEquals(true,p.getGameType()==gameState.WON || p.getGameType()==gameState.LOST);
+		assertEquals(true,dragonMove);
+	}
+
+	@Test(timeout=1000)
+	public void testSleepMode()
+	{
+
+	}
 }

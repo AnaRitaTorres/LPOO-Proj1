@@ -14,6 +14,7 @@ public class Play
 	private Weapon w = new Weapon (1,2,'E');
 	private gameState gameType;	
 	
+	
 	public boolean pointEquals(Point p1, Point p2)
 	{
 		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
@@ -145,7 +146,7 @@ public class Play
 		
 		
 		
-		while(gameType!=gameState.OVER)
+		while(gameType!=gameState.WON || gameType!=gameState.LOST)
 		{
 			maze.moveHandler(h);
 			
@@ -178,7 +179,7 @@ public class Play
 			
 			if(h.getState() == characterState.DEAD )
 			{
-				setState(gameType.OVER);
+				setState(gameType.LOST);
 				System.out.print("\nYou're Dead!\n");
 				
 			}
@@ -186,7 +187,7 @@ public class Play
 			
 			if (d.getState()==characterState.DEAD && pointEquals(maze.getOut(), h.getCharacterPosition()))
 			{
-				setState(gameType.OVER);
+				setState(gameType.WON);
 				System.out.print("\nYou Won The Game!\n");
 				
 			}
