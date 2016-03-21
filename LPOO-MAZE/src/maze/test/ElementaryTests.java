@@ -192,11 +192,10 @@ public class ElementaryTests
 	public void testRandomMode()
 	{
 		boolean dragonMove = true;
-		p.setState(gameState.RANDOM);
 
-		while ((p.getGameType()!=gameState.WON && p.getGameType()!=gameState.LOST )&& dragonMove)
+		while (p.getGameType()!=gameState.WON && p.getGameType()!=gameState.LOST && dragonMove)
 		{
-			Point o = new Point (p.getDragon().getCharacterPosition().getY(),p.getDragon().getCharacterPosition().getX());
+			Point o = new Point (p.getDragon().getCharacterPosition().getX(),p.getDragon().getCharacterPosition().getY());
 			if(p.getHero().getState()== characterState.ARMED ||p.getHero().getState()== characterState.DISARMED)
 				m.moveRandom(p.getHero());
 			p.updateGame();
@@ -224,6 +223,54 @@ public class ElementaryTests
 	@Test(timeout=1000)
 	public void testSleepMode()
 	{
+		boolean dragonMove=true;
+
+		while (p.getGameType()!=gameState.WON && p.getGameType()!=gameState.LOST && dragonMove)
+		{
+			
+			Point o = new Point (p.getDragon().getCharacterPosition().getX(),p.getDragon().getCharacterPosition().getY());
+
+			if(p.getHero().getState()== characterState.ARMED ||p.getHero().getState()== characterState.DISARMED)
+				m.moveRandom(p.getHero());
+
+			p.updateGame();
+			
+			if (p.getDragon().getState()==characterState.ALIVE)
+			{
+				if (p.sleepMove())
+				{
+					m.moveRandom(p.getDragon());
+					p.getDragon().setChar('D');
+				}
+				else
+				{
+					p.getDragon().setChar('d');
+				}
+			}
+			p.updateGame();
+			if (p.getDragon().getState()==characterState.ALIVE)
+			{
+			if(p.getDragon().getChar()== 'd' && !m.pointEquals(o, p.getDragon().getCharacterPosition()))
+				dragonMove=false;
+			
+			if (p.getDragon().getChar()== 'D' &&  m.pointEquals(o, p.getDragon().getCharacterPosition()))
+				dragonMove=false;
+			}
+			 
+
+			if(p.getHero().getState() == characterState.DEAD )
+			{
+				p.setState(gameState.LOST);
+			}
+
+			if (p.getDragon().getState()==characterState.DEAD && m.pointEquals(m.getOut(), p.getHero().getCharacterPosition()))
+			{
+				p.setState(gameState.WON);
+			}
+		}
+		assertEquals(true,dragonMove);
+		assertEquals(true,p.getGameType()==gameState.WON || p.getGameType()==gameState.LOST);
+		
 
 	}
 }
