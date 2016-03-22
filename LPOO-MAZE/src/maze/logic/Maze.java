@@ -130,7 +130,7 @@ public class Maze
 		
 		while(!valid_move)
 		{
-			int random = (int )(Math.random() * 4);
+			int random = (int)(Math.random() * 4);
 			
 			switch(random)
 			{

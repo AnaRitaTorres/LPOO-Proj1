@@ -116,7 +116,7 @@ public class Play
 	
 	public boolean sleepMove()
 	{
-		if((int )(Math.random() * 2) == 1)
+		if((int)(Math.random() * 2) == 1)
 		{
 			
 			return false;
