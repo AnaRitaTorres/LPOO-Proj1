@@ -10,6 +10,10 @@ public class Main
 	{	
 		
 		mb.printMaze();
+		System.out.print('\n');
+		mb.printVisited();
+		if(mb.openCellAround(new Point(1,1)))
+			System.out.print("heyy");
 		//p.gamePlay();
 
 	}

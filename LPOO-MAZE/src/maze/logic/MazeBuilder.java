@@ -50,7 +50,14 @@ public class MazeBuilder
 		createVisitedCell(size);
 		generateExit(size);
 	}
-
+	
+	public void openMaze()
+	{
+		int random = (int)(Math.random() * 4);
+		
+		case(random)
+	}
+	
 	public void printMaze()
 	{
 		for(int j=0; j < lab.length;j++)
@@ -59,6 +66,21 @@ public class MazeBuilder
 			{
 				System.out.print(lab[j][i]);
 				System.out.print(' ');
+			}
+			System.out.print('\n');
+		}
+	}
+	
+	public void printVisited()
+	{
+		for(int j=0; j < visitedCells.length;j++)
+		{
+			for(int i=0; i < visitedCells[j].length; i++)
+			{
+				if(visitedCells[j][i])
+					System.out.print("T ");
+				else
+					System.out.print("F ");
 			}
 			System.out.print('\n');
 		}
@@ -75,6 +97,8 @@ public class MazeBuilder
 		
 		lab[random][size-1]= 'S';
 		
+		visitedCells[(random-1) /2][(size-2) /2] = true;
+		
 		
 	}
 
@@ -88,19 +112,66 @@ public class MazeBuilder
 		{
 			for(int j=0; j < vcDimension; j++)
 			{
-				visitedCells[i][j]= false;
+				visitedCells[i][j]= true;
 			}
 		}
+		
+		
 
+	}
+	
+	public boolean isOut(Point p)
+	{
+		if(p.getY() > visitedCells.length  || p.getY() < 0 || p.getX() > visitedCells[0].length || p.getX() < 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean openCellAround(Point p)
+	{
+		Point newp = conversionToCells(p);
+		
+		newp.setX(newp.getX() +1);
+		if(!isOut(newp))
+		{
+			if(!(visitedCells[newp.getY()][newp.getX()]));
+				return true;
+		}
+		
+		newp.setX(newp.getX() -2);
+		if(!isOut(newp))
+		{
+			if(!(visitedCells[newp.getY()][newp.getX()]));
+				return true;
+		}
+		
+		newp.setX(newp.getX() +1);
+		newp.setY(newp.getY() +1);
+		if(!isOut(newp))
+		{
+			if(!(visitedCells[newp.getY()][newp.getX()]));
+				return true;
+		}
+		
+		newp.setY(newp.getY() -2);
+		if(!isOut(newp))
+		{
+			if(!(visitedCells[newp.getY()][newp.getX()]));
+				return true;
+		}
+		
+		return false;
+		
 	}
 	
 	public Point conversionToCells(Point p)
 	{
-		
+		return new Point((p.getX() -1) / 2,(p.getY() -1) / 2);
 	}
 
 	public Point conversionToMaze(Point p)
 	{
-		
+		return new Point((p.getX()*2) +1,(p.getY()*2) +1);
 	}
 }
