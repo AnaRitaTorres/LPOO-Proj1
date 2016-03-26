@@ -48,7 +48,15 @@ public class MazeBuilder implements IMazeBuilder
 		}
 		createVisitedCell(size);
 		generateExit(size);
+		addHero(size);
+		addDragon(size);
+		addSword(size);
 		randomPath();
+		
+		//printMaze();
+		//System.out.print("\n");
+		//printVisited();
+		//System.out.print("\n");
 	}
 
 	public char[][] getMaze()
@@ -59,13 +67,20 @@ public class MazeBuilder implements IMazeBuilder
 	{
 		
 	}
-
+	
+	public char[][] buildMaze(int size) throws IllegalArgumentException
+	{
+		if (size % 2 != 0) 
+		{
+			MazeBuilder mb = new MazeBuilder(size);
+			return mb.getMaze();
+		}
+		else
+			throw new IllegalArgumentException();
+	}
+	
 	public void randomPath()
 	{
-		printMaze();
-		System.out.print("\n");
-		printVisited();
-		System.out.print("\n\n\n\n\n\n\n\n\n");
 		int random = (int)(Math.random() * 4);
 		Point r;
 
@@ -251,9 +266,98 @@ public class MazeBuilder implements IMazeBuilder
 		return new Point((p.getX()*2) +1,(p.getY()*2) +1);
 	}
 
-	@Override
-	public char[][] buildMaze(int size) {
-		// TODO Auto-generated method stub
-		return null;
+	public void addHero(int size)
+	{
+		int random1 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random1))
+		{
+			random1 = (int)(Math.random() * (size-1));
+		}
+		
+		int random2 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random2))
+		{
+			random2 = (int)(Math.random() * (size-1));
+		}
+		
+		lab[random1][random2] = 'H';
+	}
+	
+	public void addDragon(int size)
+	{
+		int random1 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random1))
+		{
+			random1 = (int)(Math.random() * (size-1));
+		}
+		
+		int random2 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random2))
+		{
+			random2 = (int)(Math.random() * (size-1));
+		}
+		
+		if(lab[random1][random2] == 'H')
+		{
+			addDragon(size);
+			return;
+		}
+		if(lab[random1+1][random2] == 'H')
+		{
+			addDragon(size);
+			return;
+		}
+		if(lab[random1][random2+1] == 'H')
+		{
+			addDragon(size);
+			return;
+		}
+		if(lab[random1-1][random2] == 'H')
+		{
+			addDragon(size);
+			return;
+		}
+		if(lab[random1][random2-1] == 'H')
+		{
+			addDragon(size);
+			return;
+		}
+		lab[random1][random2] = 'D';
+			
+	}
+	
+	public void addSword(int size)
+	{
+		int random1 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random1))
+		{
+			random1 = (int)(Math.random() * (size-1));
+		}
+		
+		int random2 = (int)(Math.random() * (size-1));
+
+		while(!isOdd(random2))
+		{
+			random2 = (int)(Math.random() * (size-1));
+		}
+		
+		if(lab[random1][random2] == 'H')
+		{
+			addSword(size);
+			return;
+		}
+		
+		if(lab[random1][random2] == 'D')
+		{
+			addSword(size);
+			return;
+		}
+		
+		lab[random1][random2] = 'E';
 	}
 }
