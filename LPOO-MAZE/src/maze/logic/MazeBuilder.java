@@ -1,5 +1,6 @@
 package maze.logic;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class MazeBuilder implements IMazeBuilder
@@ -79,6 +80,23 @@ public class MazeBuilder implements IMazeBuilder
 			throw new IllegalArgumentException();
 	}
 	
+	@Override
+	public String toString() 
+	{
+		String s ="";
+		for(int j=0; j < lab.length;j++)
+		{
+			for(int i=0; i < lab[j].length; i++)
+			{
+				s+= lab[j][i];
+				s+=' ';
+			}
+			s+='\n';
+		}
+		
+		return s;
+	}
+
 	public void randomPath()
 	{
 		int random = (int)(Math.random() * 4);
