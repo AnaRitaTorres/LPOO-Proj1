@@ -1,5 +1,6 @@
 package maze.logic;
 
+import java.util.ArrayList;
 import maze.cli.Interface;
 import maze.logic.CharacterState.characterState;
 import maze.logic.GameState.gameState;
@@ -10,9 +11,12 @@ public class Play
 	private Interface i = new Interface();
 	private Maze maze = new Maze();
 	private Hero h = new Hero(1,1,'H');
-	private Dragon d = new Dragon (8,1,'D');
+	private Dragon d1 = new Dragon (8,1,'D');
+	private Dragon d2 = new Dragon (8,8,'D');
+	
 	private Weapon w = new Weapon (1,2,'E');
 	private gameState gameType;	
+	private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	
 	
 	public boolean pointEquals(Point p1, Point p2)
@@ -27,19 +31,10 @@ public class Play
 	{
 		return h;
 	}
+	
 	public Dragon getDragon()
 	{
-		return d;
-	}
-	
-	public boolean isDragonDead()
-	{
-		if(d.getState() == characterState.DEAD)
-		{
-			return false;
-		}
-		
-		return true;
+		return dragons.get(0);
 	}
 	
 	public void checkArmed()
@@ -60,28 +55,34 @@ public class Play
 			h.setDisarmed();
 		}
 	}
+	
 	public void updateGame()
 	{
-		int dx = Math.abs(h.getCharacterPosition().getX() - d.getCharacterPosition().getX());
-		int dy = Math.abs(h.getCharacterPosition().getY() - d.getCharacterPosition().getY());
-		
 		checkArmed();
-		
-		if(dx <= 1 && dy <= 1)
+		for(int i = 0; i < dragons.size(); i++)
 		{
-			if(h.getState()== characterState.DISARMED)
-			{
-				h.setState(characterState.DEAD);
-			}
+			int dx = Math.abs(h.getCharacterPosition().getX() - dragons.get(i).getCharacterPosition().getX());
+			int dy = Math.abs(h.getCharacterPosition().getY() - dragons.get(i).getCharacterPosition().getY());
 			
-			if(h.getState() == characterState.ARMED && d.getState()== characterState.ALIVE)
+			
+			
+			if(dx <= 1 && dy <= 1)
 			{
-				d.setState(characterState.DEAD);
-				maze.clearCell(d.getCharacterPosition());
+				if(h.getState()== characterState.DISARMED)
+				{
+					h.setState(characterState.DEAD);
+				}
+				
+				if(h.getState() == characterState.ARMED && dragons.get(i).getState()== characterState.ALIVE)
+				{
+					dragons.get(i).setState(characterState.DEAD);
+					maze.clearCell(dragons.get(i).getCharacterPosition());
+				}
 			}
 		}
 		
 	}
+	
 	public gameState getGameType()
 	{
 		return gameType;
@@ -136,8 +137,15 @@ public class Play
 	
 	public void gamePlay()
 	{
+		dragons.add(d1);
+		dragons.add(d2);
 		maze.printCell(h.getCharacterPosition(),h.getChar());
-		maze.printCell(d.getCharacterPosition(), d.getChar());
+		
+		for(int i = 0; i < dragons.size(); i++)
+		{
+			maze.printCell(dragons.get(i).getCharacterPosition(), dragons.get(i).getChar());
+		}
+		
 		maze.printCell(w.getPosition(), w.getChar());
 		
 		gameStateHandler();
@@ -146,34 +154,40 @@ public class Play
 		
 		
 		
-		while(gameType!=gameState.WON || gameType!=gameState.LOST)
+		while(gameType!=gameState.WON && gameType!=gameState.LOST)
 		{
 			maze.moveHandler(h);
 			
-			if(d.getState() == characterState.ALIVE && gameType == gameState.SLEEP)
-				if(sleepMove())
-				{
-					d.setChar('D');
-					maze.moveRandom(d);
-				}
-					
-				else
-					d.setChar('d');
-					
+			for(int i = 0; i < dragons.size(); i++)
+			{
+				if(dragons.get(i).getState() == characterState.ALIVE && gameType == gameState.SLEEP)
+					if(sleepMove())
+					{
+						dragons.get(i).setChar('D');
+						maze.moveRandom(dragons.get(i));
+					}
+						
+					else
+						dragons.get(i).setChar('d');
+			}
 			
-			if(d.getState() == characterState.ALIVE && gameType == gameState.RANDOM)
-				maze.moveRandom(d);
+			for(int i = 0; i < dragons.size(); i++)
+				if(dragons.get(i).getState() == characterState.ALIVE && gameType == gameState.RANDOM)
+					maze.moveRandom(dragons.get(i));
 			
 			
 			maze.printCell(w.getPosition(), w.getChar());
 			
 			updateGame();
-			maze.dragonWeapon(d, w);
 			
-			if(d.getState()== characterState.ALIVE)
-			{
-				maze.printCell(d.getCharacterPosition(), d.getChar());
-			}
+			for(int i = 0; i < dragons.size(); i++)
+				maze.dragonWeapon(dragons.get(i), w);
+			
+			for(int i = 0; i < dragons.size(); i++)
+				if(dragons.get(i).getState()== characterState.ALIVE)
+				{
+					maze.printCell(dragons.get(i).getCharacterPosition(), dragons.get(i).getChar());
+				}
 			
 			i.printMaze(maze);
 			
@@ -184,12 +198,10 @@ public class Play
 				
 			}
 			
-			
-			if (d.getState()==characterState.DEAD && pointEquals(maze.getOut(), h.getCharacterPosition()))
+			if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
 			{
 				setState(gameType.WON);
 				System.out.print("\nYou Won The Game!\n");
-				
 			}
 			
 		}
