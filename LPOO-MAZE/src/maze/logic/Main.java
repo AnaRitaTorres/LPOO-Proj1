@@ -5,7 +5,7 @@ public class Main
 {
 	static Play p = new Play();
 
-	//private static MazeBuilder mb = new MazeBuilder(9);
+	private static MazeBuilder mb = new MazeBuilder(9);
 
 	//private static MazeBuilder mb = new MazeBuilder(3511);
 
@@ -21,7 +21,7 @@ public class Main
 		//printMaze();
 		//System.out.print('\n');
 		//mb.printVisited();
-
+		p = new Play(mb.getMaze());
 		p.gamePlay();
 
 	}

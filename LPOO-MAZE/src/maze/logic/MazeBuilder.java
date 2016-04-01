@@ -60,13 +60,14 @@ public class MazeBuilder implements IMazeBuilder
 		//System.out.print("\n");
 	}
 
+	public MazeBuilder() 
+	{
+		// TODO Auto-generated constructor stub
+	}
+
 	public char[][] getMaze()
 	{
 		return lab;
-	}
-	public MazeBuilder() 
-	{
-		
 	}
 	
 	public char[][] buildMaze(int size) throws IllegalArgumentException
@@ -319,27 +320,27 @@ public class MazeBuilder implements IMazeBuilder
 			random2 = (int)(Math.random() * (size-1));
 		}
 		
-		if(lab[random1][random2] == 'H')
+		if(lab[random1][random2] == 'H' || lab[random1][random2] == 'D')
 		{
 			addDragon(size);
 			return;
 		}
-		if(lab[random1+1][random2] == 'H')
+		if(lab[random1+1][random2] == 'H'|| lab[random1+1][random2] == 'D')
 		{
 			addDragon(size);
 			return;
 		}
-		if(lab[random1][random2+1] == 'H')
+		if(lab[random1][random2+1] == 'H' || lab[random1][random2+1] == 'D')
 		{
 			addDragon(size);
 			return;
 		}
-		if(lab[random1-1][random2] == 'H')
+		if(lab[random1-1][random2] == 'H' || lab[random1-1][random2] == 'D')
 		{
 			addDragon(size);
 			return;
 		}
-		if(lab[random1][random2-1] == 'H')
+		if(lab[random1][random2-1] == 'H' || lab[random1][random2-1] == 'D')
 		{
 			addDragon(size);
 			return;

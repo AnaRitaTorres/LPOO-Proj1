@@ -10,14 +10,24 @@ public class Play
 {
 	private Interface i = new Interface();
 	private Maze maze = new Maze();
-	private Hero h = new Hero(1,1,'H');
-	private Dragon d1 = new Dragon (8,1,'D');
-	private Dragon d2 = new Dragon (8,8,'D');
-	
-	private Weapon w = new Weapon (1,2,'E');
+	private Hero h = new Hero(0,0,'H');
+	private Weapon w = new Weapon (0,0,'E');
 	private gameState gameType;	
 	private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	
+	public Play (char[][] lab)
+	{
+		this.maze = new Maze(lab);
+		this.h = maze.getMazeHero();
+		this.w = maze.getMazeWeapon();
+		this.dragons = maze.getMazeDragons();
+		
+	}
+	
+	public Play()
+	{
+		
+	}
 	
 	public boolean pointEquals(Point p1, Point p2)
 	{
@@ -137,8 +147,6 @@ public class Play
 	
 	public void gamePlay()
 	{
-		dragons.add(d1);
-		dragons.add(d2);
 		maze.printCell(h.getCharacterPosition(),h.getChar());
 		
 		for(int i = 0; i < dragons.size(); i++)
@@ -207,4 +215,5 @@ public class Play
 		}
 	}
 	
+
 }
