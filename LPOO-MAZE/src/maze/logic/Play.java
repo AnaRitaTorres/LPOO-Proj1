@@ -254,19 +254,19 @@ public class Play
 				maze.printCell(dragons.get(i).getCharacterPosition(), dragons.get(i).getChar());
 			}
 		
-		//i.printMaze(maze);
+		i.printMaze(maze);
 		
 		if(h.getState() == characterState.DEAD )
 		{
 			setState(gameType.LOST);
-			//System.out.print("\nYou're Dead!\n");
+			System.out.print("\nYou're Dead!\n");
 			
 		}
 		
 		if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
 		{
 			setState(gameType.WON);
-			//System.out.print("\nYou Won The Game!\n");
+			System.out.print("\nYou Won The Game!\n");
 		}
 	}
 

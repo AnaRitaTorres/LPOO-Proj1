@@ -171,6 +171,7 @@ public class WindowBuilder {
 			public void actionPerformed(ActionEvent arg0) 
 			{				
 				play.getLab().move(movementType.UP, play.getHero());
+				
 				lab.setText(play.getLab().toString());
 			}
 		});
