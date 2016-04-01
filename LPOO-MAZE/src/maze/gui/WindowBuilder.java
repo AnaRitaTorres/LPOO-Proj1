@@ -15,13 +15,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class WindowBuilder {
 
 	private JFrame frmJodo;
 	private JTextField labDim;
 	private JTextField numDrag;
-	private static MazeBuilder m = new MazeBuilder(11);
+	private static MazeBuilder m = new MazeBuilder(5);
 
 	/**
 	 * Launch the application.
@@ -102,17 +104,11 @@ public class WindowBuilder {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
+				
 				int tamanho = Integer.parseInt(labDim.getText());
-				if (labDim.getText()== "")
-				{
-					m.buildMaze(11);
-					lab.setText(m.toString());
-				}
-				else 
-				{
-					m.buildMaze(tamanho);
-					lab.setText(m.toString());
-				}
+				m.buildMaze(tamanho);
+				lab.setText(m.toString());
+				
 				
 			}
 		});
