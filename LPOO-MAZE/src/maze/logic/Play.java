@@ -15,18 +15,24 @@ public class Play
 	private gameState gameType;	
 	private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	
-	public Play (char[][] lab)
+	public Play (char[][] lab, gameState state)
 	{
 		this.maze = new Maze(lab);
 		this.h = maze.getMazeHero();
 		this.w = maze.getMazeWeapon();
 		this.dragons = maze.getMazeDragons();
+		this.gameType = state;
 		
 	}
 	
 	public Play()
 	{
 		
+	}
+	
+	public Maze getLab()
+	{
+		return this.maze;
 	}
 	
 	public boolean pointEquals(Point p1, Point p2)
@@ -215,5 +221,53 @@ public class Play
 		}
 	}
 	
+	public void gamePlayGui()
+	{
+		for(int i = 0; i < dragons.size(); i++)
+		{
+			if(dragons.get(i).getState() == characterState.ALIVE && gameType == gameState.SLEEP)
+				if(sleepMove())
+				{
+					dragons.get(i).setChar('D');
+					maze.moveRandom(dragons.get(i));
+				}
+					
+				else
+					dragons.get(i).setChar('d');
+		}
+		
+		for(int i = 0; i < dragons.size(); i++)
+			if(dragons.get(i).getState() == characterState.ALIVE && gameType == gameState.RANDOM)
+				maze.moveRandom(dragons.get(i));
+		
+		
+		maze.printCell(w.getPosition(), w.getChar());
+		
+		updateGame();
+		
+		for(int i = 0; i < dragons.size(); i++)
+			maze.dragonWeapon(dragons.get(i), w);
+		
+		for(int i = 0; i < dragons.size(); i++)
+			if(dragons.get(i).getState()== characterState.ALIVE)
+			{
+				maze.printCell(dragons.get(i).getCharacterPosition(), dragons.get(i).getChar());
+			}
+		
+		//i.printMaze(maze);
+		
+		if(h.getState() == characterState.DEAD )
+		{
+			setState(gameType.LOST);
+			//System.out.print("\nYou're Dead!\n");
+			
+		}
+		
+		if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
+		{
+			setState(gameType.WON);
+			//System.out.print("\nYou Won The Game!\n");
+		}
+	}
 
 }

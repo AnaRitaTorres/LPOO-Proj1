@@ -289,4 +289,21 @@ public class Maze
 		
 		return weapon;
 	}
+	
+	@Override
+	public String toString() 
+	{
+		String s ="";
+		for(int j=0; j < maze.length;j++)
+		{
+			for(int i=0; i < maze[j].length; i++)
+			{
+				s+= maze[j][i];
+				s+=' ';
+			}
+			s+='\n';
+		}
+		
+		return s;
+	}
 }

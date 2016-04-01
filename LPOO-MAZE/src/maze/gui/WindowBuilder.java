@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import maze.cli.Interface;
+import maze.logic.GameState.gameState;
 import maze.logic.MazeBuilder;
+import maze.logic.MovementType.movementType;
 import maze.logic.Play;
 
 import javax.swing.JScrollBar;
@@ -28,6 +31,7 @@ public class WindowBuilder {
 	private JTextField numDrag;
 	private static MazeBuilder m;
 	private Play play;
+	private Interface i;
 
 	/**
 	 * Launch the application.
@@ -50,6 +54,21 @@ public class WindowBuilder {
 			}
 		});
 	}
+	
+	public gameState typeDragon(String type)
+	{
+		switch(type)
+		{
+		case "Static":
+			return gameState.STATIC;
+		case "Sleep":
+			return gameState.SLEEP;
+		case "Random":
+			return gameState.RANDOM;
+		default:
+			return gameState.STATIC;	
+		}
+	}
 
 	/**
 	 * Create the application.
@@ -67,7 +86,7 @@ public class WindowBuilder {
 		frmJodo = new JFrame();
 		frmJodo.setResizable(false);
 		frmJodo.setTitle("Jogo do Labirinto");
-		frmJodo.setBounds(700,700,700,700);
+		frmJodo.setBounds(10,10,700,700);
 		frmJodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJodo.getContentPane().setLayout(null);
 		
@@ -113,6 +132,7 @@ public class WindowBuilder {
 				
 				int dragoes = Integer.parseInt(numDrag.getText());
 				int tamanho = Integer.parseInt(labDim.getText());
+				String selected = (String) typeDrag.getSelectedItem();
 				
 				m = new MazeBuilder(tamanho);
 				m.buildMaze(tamanho);
@@ -121,8 +141,10 @@ public class WindowBuilder {
 				{
 					m.addDragon(tamanho);
 				}
-		
-				lab.setText(m.toString());
+				
+				play = new Play(m.getMaze(), typeDragon(selected));
+				lab.setText(play.getLab().toString());
+				
 				
 				
 			}
@@ -144,23 +166,57 @@ public class WindowBuilder {
 	
 		
 		JButton btnCima = new JButton("Cima");
+		btnCima.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{				
+				play.getLab().move(movementType.UP, play.getHero());
+				lab.setText(play.getLab().toString());
+			}
+		});
 		btnCima.setBounds(496, 89, 89, 23);
 		frmJodo.getContentPane().add(btnCima);
 		
 		JButton btnEsquerda = new JButton("Esquerda");
+		btnEsquerda.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				play.getLab().move(movementType.LEFT, play.getHero());
+				lab.setText(play.getLab().toString());
+			}
+		});
 		btnEsquerda.setBounds(444, 123, 89, 23);
 		frmJodo.getContentPane().add(btnEsquerda);
 		
 		JButton btnDireita = new JButton("Direita");
+		btnDireita.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				play.getLab().move(movementType.RIGHT, play.getHero());
+				lab.setText(play.getLab().toString());
+			}
+		});
 		btnDireita.setBounds(543, 123, 89, 23);
 		frmJodo.getContentPane().add(btnDireita);
 		
 		JButton btnBaixo = new JButton("Baixo");
+		btnBaixo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				play.getLab().move(movementType.DOWN, play.getHero());
+				lab.setText(play.getLab().toString());
+			}
+		});
 		btnBaixo.setBounds(496, 157, 89, 23);
 		frmJodo.getContentPane().add(btnBaixo);
 		
 		JLabel warning = new JLabel("");
-		warning.setBounds(25, 161, 211, 19);
+		warning.setBounds(37, 161, 269, 19);
 		frmJodo.getContentPane().add(warning);
+		
+		
 	}
 }

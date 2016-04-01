@@ -1,5 +1,6 @@
 package maze.logic;
 
+import maze.logic.GameState.gameState;
 import maze.logic.Play;
 public class Main
 {
@@ -21,7 +22,7 @@ public class Main
 		//printMaze();
 		//System.out.print('\n');
 		//mb.printVisited();
-		p = new Play(mb.getMaze());
+		p = new Play(mb.getMaze(), gameState.STATIC);
 		p.gamePlay();
 
 	}
