@@ -258,6 +258,7 @@ public class Maze
 	public Hero getMazeHero()
 	{
 		Hero hero = new Hero(0,0,'H');
+		
 		for(int i=0; i < maze.length; i++)
 		{
 			for (int j=0; j < maze[i].length; j++)
@@ -274,6 +275,7 @@ public class Maze
 
 	public Weapon getMazeWeapon()
 	{
+		
 		Weapon weapon = new Weapon(0,0,'E');
 		
 		for(int i=0; i < maze.length; i++)

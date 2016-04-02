@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import maze.cli.Interface;
+import maze.logic.CharacterState;
+import maze.logic.CharacterState.characterState;
 import maze.logic.GameState.gameState;
 import maze.logic.MazeBuilder;
 import maze.logic.MovementType.movementType;
@@ -33,6 +35,12 @@ public class WindowBuilder {
 	private Play play;
 	private Interface i;
 
+	JButton btnEsquerda = new JButton("Esquerda");
+	JButton btnDireita = new JButton("Direita");
+	JButton btnCima = new JButton("Cima");	
+	JButton btnBaixo = new JButton("Baixo");
+	JLabel warning = new JLabel("");
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,16 +67,51 @@ public class WindowBuilder {
 	{
 		switch(type)
 		{
-		case "Static":
+		case "Estáticos":
 			return gameState.STATIC;
-		case "Sleep":
+		case "Adormecidos":
 			return gameState.SLEEP;
-		case "Random":
+		case "Aleatórios":
 			return gameState.RANDOM;
 		default:
 			return gameState.STATIC;	
 		}
 	}
+	
+	public void enableMovement()
+	{
+		btnCima.setEnabled(true);
+		btnEsquerda.setEnabled(true);
+		btnDireita.setEnabled(true);
+		btnBaixo.setEnabled(true);
+	}
+	
+	public void disableMovement()
+	{
+		btnCima.setEnabled(false);
+		btnEsquerda.setEnabled(false);
+		btnDireita.setEnabled(false);
+		btnBaixo.setEnabled(false);
+	}
+	
+	public void changeStatus()
+	{
+		if(play.getHero().getState() == characterState.DEAD )
+		{
+			play.setState(gameState.LOST);
+			disableMovement();
+			warning.setText("Perdeu o Jogo. Pode gerar um novo Labirinto.");
+		}
+
+		if(!play.getLab().aliveDragon() && play.pointEquals(play.getLab().getOut(), play.getHero().getCharacterPosition()))
+		{
+			play.setState(gameState.WON);
+			disableMovement();
+			warning.setText("Ganhou o Jogo! Pode gerar um novo Labirinto.");
+		}
+	}
+	
+	
 
 	/**
 	 * Create the application.
@@ -113,7 +156,7 @@ public class WindowBuilder {
 		frmJodo.getContentPane().add(lblTipoDeDrages);
 		
 		JComboBox<String> typeDrag = new JComboBox<String>();
-		typeDrag.setModel(new DefaultComboBoxModel<String>(new String[] {"Static", "Sleep", "Random"}));
+		typeDrag.setModel(new DefaultComboBoxModel<String>(new String[] {"Estáticos", "Adormecidos", "Aleatórios"}));
 		typeDrag.setToolTipText("");
 		typeDrag.setBounds(164, 70, 95, 20);
 		frmJodo.getContentPane().add(typeDrag);
@@ -127,12 +170,21 @@ public class WindowBuilder {
 		JButton btnGerarNovoLabirinto = new JButton("Gerar Novo Labirinto");
 		btnGerarNovoLabirinto.addActionListener(new ActionListener() 
 		{
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) throws IllegalArgumentException
 			{
+				
 				
 				int dragoes = Integer.parseInt(numDrag.getText());
 				int tamanho = Integer.parseInt(labDim.getText());
 				String selected = (String) typeDrag.getSelectedItem();
+				
+				if (tamanho%2 == 0)
+				{
+					warning.setText("A Dimensão do Labirinto não pode ser Par.");
+					return;
+				}
+				
+				warning.setText("Número de Dragões muito elevado.");
 				
 				m = new MazeBuilder(tamanho);
 				m.buildMaze(tamanho);
@@ -141,9 +193,11 @@ public class WindowBuilder {
 				{
 					m.addDragon(tamanho);
 				}
-				
+				warning.setText("Pode Jogar!");
 				play = new Play(m.getMaze(), typeDragon(selected));
 				lab.setText(play.getLab().toString());
+				
+				enableMovement();
 				
 				
 				
@@ -165,58 +219,66 @@ public class WindowBuilder {
 		
 	
 		
-		JButton btnCima = new JButton("Cima");
+		//JButton btnCima = new JButton("Cima");
 		btnCima.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{				
 				play.getLab().move(movementType.UP, play.getHero());
-				
+				play.gamePlayGui();
+				changeStatus();
 				lab.setText(play.getLab().toString());
 			}
 		});
 		btnCima.setBounds(496, 89, 89, 23);
 		frmJodo.getContentPane().add(btnCima);
 		
-		JButton btnEsquerda = new JButton("Esquerda");
+		//JButton btnEsquerda = new JButton("Esquerda");
 		btnEsquerda.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				play.getLab().move(movementType.LEFT, play.getHero());
+				play.gamePlayGui();
+				changeStatus();
 				lab.setText(play.getLab().toString());
 			}
 		});
 		btnEsquerda.setBounds(444, 123, 89, 23);
 		frmJodo.getContentPane().add(btnEsquerda);
 		
-		JButton btnDireita = new JButton("Direita");
+		//JButton btnDireita = new JButton("Direita");
 		btnDireita.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				play.getLab().move(movementType.RIGHT, play.getHero());
+				play.gamePlayGui();
+				changeStatus();
 				lab.setText(play.getLab().toString());
 			}
 		});
 		btnDireita.setBounds(543, 123, 89, 23);
 		frmJodo.getContentPane().add(btnDireita);
 		
-		JButton btnBaixo = new JButton("Baixo");
+		//JButton btnBaixo = new JButton("Baixo");
 		btnBaixo.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				play.getLab().move(movementType.DOWN, play.getHero());
+				play.gamePlayGui();
+				changeStatus();
 				lab.setText(play.getLab().toString());
 			}
 		});
 		btnBaixo.setBounds(496, 157, 89, 23);
 		frmJodo.getContentPane().add(btnBaixo);
 		
-		JLabel warning = new JLabel("");
-		warning.setBounds(37, 161, 269, 19);
+		//JLabel warning = new JLabel("");
+		warning.setBounds(25, 161, 269, 19);
 		frmJodo.getContentPane().add(warning);
+		
 		
 		
 	}

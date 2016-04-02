@@ -54,7 +54,7 @@ public class MazeBuilder implements IMazeBuilder
 		addSword(size);
 		randomPath();
 		
-		//printMaze();
+		printMaze();
 		//System.out.print("\n");
 		//printVisited();
 		//System.out.print("\n");
@@ -320,6 +320,11 @@ public class MazeBuilder implements IMazeBuilder
 			random2 = (int)(Math.random() * (size-1));
 		}
 		
+		if(lab[random1][random2] == 'E')
+		{
+			addDragon(size);
+			return;
+		}
 		if(lab[random1][random2] == 'H' || lab[random1][random2] == 'D')
 		{
 			addDragon(size);
@@ -365,6 +370,12 @@ public class MazeBuilder implements IMazeBuilder
 			random2 = (int)(Math.random() * (size-1));
 		}
 		
+		if(lab[random1][random2] == 'X')
+		{
+			addSword(size);
+			return;
+		}
+		
 		if(lab[random1][random2] == 'H')
 		{
 			addSword(size);
@@ -376,6 +387,9 @@ public class MazeBuilder implements IMazeBuilder
 			addSword(size);
 			return;
 		}
+		
+		
+		
 		
 		lab[random1][random2] = 'E';
 	}

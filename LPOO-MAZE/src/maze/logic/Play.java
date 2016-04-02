@@ -10,8 +10,8 @@ public class Play
 {
 	private Interface i = new Interface();
 	private Maze maze = new Maze();
-	private Hero h = new Hero(0,0,'H');
-	private Weapon w = new Weapon (0,0,'E');
+	private Hero h;
+	private Weapon w;
 	private gameState gameType;	
 	private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	
@@ -240,13 +240,10 @@ public class Play
 			if(dragons.get(i).getState() == characterState.ALIVE && gameType == gameState.RANDOM)
 				maze.moveRandom(dragons.get(i));
 		
-		
-		maze.printCell(w.getPosition(), w.getChar());
-		
 		updateGame();
 		
-		for(int i = 0; i < dragons.size(); i++)
-			maze.dragonWeapon(dragons.get(i), w);
+		maze.printCell(w.getPosition(), w.getChar());
+		maze.printCell(h.getCharacterPosition(), h.getChar());
 		
 		for(int i = 0; i < dragons.size(); i++)
 			if(dragons.get(i).getState()== characterState.ALIVE)
@@ -254,20 +251,25 @@ public class Play
 				maze.printCell(dragons.get(i).getCharacterPosition(), dragons.get(i).getChar());
 			}
 		
-		i.printMaze(maze);
+	
 		
-		if(h.getState() == characterState.DEAD )
-		{
-			setState(gameType.LOST);
-			System.out.print("\nYou're Dead!\n");
-			
-		}
+		for(int i = 0; i < dragons.size(); i++)
+			maze.dragonWeapon(dragons.get(i), w);
 		
-		if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
-		{
-			setState(gameType.WON);
-			System.out.print("\nYou Won The Game!\n");
-		}
+//		i.printMaze(maze);
+//		
+//		if(h.getState() == characterState.DEAD )
+//		{
+//			setState(gameType.LOST);
+//			System.out.print("\nYou're Dead!\n");
+//			
+//		}
+//		
+//		if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
+//		{
+//			setState(gameType.WON);
+//			System.out.print("\nYou Won The Game!\n");
+//		}
 	}
 
 }
