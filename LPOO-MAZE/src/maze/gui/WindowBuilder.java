@@ -279,6 +279,17 @@ public class WindowBuilder {
 		warning.setBounds(25, 161, 269, 19);
 		frmJodo.getContentPane().add(warning);
 		
+		JButton btnAbrirJanela = new JButton("Abrir Janela");
+		btnAbrirJanela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				GraphicApp app = new GraphicApp();
+				
+			}
+		});
+		btnAbrirJanela.setBounds(307, 69, 89, 23);
+		frmJodo.getContentPane().add(btnAbrirJanela);
+		
 		
 		
 	}

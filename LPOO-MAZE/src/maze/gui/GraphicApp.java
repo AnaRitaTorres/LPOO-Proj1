@@ -30,7 +30,7 @@ public class GraphicApp
 		frmgraphic.setTitle("Jogo do Labirinto");
 		frmgraphic.setBounds(100,100,450,450);
 		frmgraphic.setPreferredSize(new Dimension(450, 450));
-		frmgraphic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frmgraphic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		GraphicPanel panel = new GraphicPanel();
 		frmgraphic.getContentPane().add(panel);

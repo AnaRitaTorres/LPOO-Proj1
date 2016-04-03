@@ -24,9 +24,7 @@ public class GraphicPanel extends JPanel implements ActionListener
 	{
 		try 
 		{
-			hero =  ImageIO.read(new File("images/hero.jpg"));
-			heroArmed =  ImageIO.read(new File("images/heroArmed.jpg"));
-			rock =  ImageIO.read(new File("images/rock.jpg"));
+			hero =  ImageIO.read(new File("images/hero.png"));
 		} 
 		catch (IOException e) 
 		{
