@@ -216,6 +216,7 @@ public class WindowBuilder {
 		});
 		btnTerminarPrograma.setBounds(441, 55, 191, 23);
 		frmJodo.getContentPane().add(btnTerminarPrograma);
+		btnCima.setEnabled(false);
 		
 	
 		
@@ -232,6 +233,7 @@ public class WindowBuilder {
 		});
 		btnCima.setBounds(496, 89, 89, 23);
 		frmJodo.getContentPane().add(btnCima);
+		btnEsquerda.setEnabled(false);
 		
 		//JButton btnEsquerda = new JButton("Esquerda");
 		btnEsquerda.addActionListener(new ActionListener()
@@ -246,6 +248,7 @@ public class WindowBuilder {
 		});
 		btnEsquerda.setBounds(444, 123, 89, 23);
 		frmJodo.getContentPane().add(btnEsquerda);
+		btnDireita.setEnabled(false);
 		
 		//JButton btnDireita = new JButton("Direita");
 		btnDireita.addActionListener(new ActionListener() 
@@ -260,6 +263,7 @@ public class WindowBuilder {
 		});
 		btnDireita.setBounds(543, 123, 89, 23);
 		frmJodo.getContentPane().add(btnDireita);
+		btnBaixo.setEnabled(false);
 		
 		//JButton btnBaixo = new JButton("Baixo");
 		btnBaixo.addActionListener(new ActionListener() 
@@ -279,16 +283,29 @@ public class WindowBuilder {
 		warning.setBounds(25, 161, 269, 19);
 		frmJodo.getContentPane().add(warning);
 		
-		JButton btnAbrirJanela = new JButton("Abrir Janela");
-		btnAbrirJanela.addActionListener(new ActionListener() {
+		JButton btnAbrirJanela = new JButton("Modo Gráfico");
+		btnAbrirJanela.addActionListener(new ActionListener() 
+		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				GraphicApp app = new GraphicApp();
+				GraphicApp app = new GraphicApp(play);
 				
 			}
 		});
-		btnAbrirJanela.setBounds(307, 69, 89, 23);
+		btnAbrirJanela.setBounds(25, 123, 146, 23);
 		frmJodo.getContentPane().add(btnAbrirJanela);
+		
+		JButton btnModoDeDesenho = new JButton("Modo de Desenho");
+		btnModoDeDesenho.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				int tamanho = Integer.parseInt(labDim.getText());
+				mouseMaze m = new mouseMaze(tamanho);
+			}
+		});
+		btnModoDeDesenho.setBounds(187, 123, 146, 23);
+		frmJodo.getContentPane().add(btnModoDeDesenho);
 		
 		
 		
