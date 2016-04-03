@@ -290,6 +290,9 @@ public class WindowBuilder {
 			{
 				GraphicApp app = new GraphicApp(play);
 				
+				play.gamePlayGui();
+				changeStatus();
+				lab.setText(play.getLab().toString());
 			}
 		});
 		btnAbrirJanela.setBounds(25, 123, 146, 23);
@@ -301,7 +304,8 @@ public class WindowBuilder {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				int tamanho = Integer.parseInt(labDim.getText());
-				mouseMaze m = new mouseMaze(tamanho);
+				int numDragoes = Integer.parseInt(numDrag.getText());
+				mouseMaze m = new mouseMaze(tamanho, numDragoes);
 			}
 		});
 		btnModoDeDesenho.setBounds(187, 123, 146, 23);
