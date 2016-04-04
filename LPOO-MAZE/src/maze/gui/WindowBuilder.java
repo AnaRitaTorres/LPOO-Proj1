@@ -40,6 +40,9 @@ public class WindowBuilder {
 	JButton btnCima = new JButton("Cima");	
 	JButton btnBaixo = new JButton("Baixo");
 	JLabel warning = new JLabel("");
+	JTextArea lab;
+	JComboBox<String> typeDrag;
+	
 	
 	/**
 	 * Launch the application.
@@ -155,13 +158,13 @@ public class WindowBuilder {
 		lblTipoDeDrages.setBounds(25, 73, 95, 14);
 		frmJodo.getContentPane().add(lblTipoDeDrages);
 		
-		JComboBox<String> typeDrag = new JComboBox<String>();
+		typeDrag = new JComboBox<String>();
 		typeDrag.setModel(new DefaultComboBoxModel<String>(new String[] {"Estáticos", "Adormecidos", "Aleatórios"}));
 		typeDrag.setToolTipText("");
 		typeDrag.setBounds(164, 70, 95, 20);
 		frmJodo.getContentPane().add(typeDrag);
 		
-		JTextArea lab = new JTextArea();
+		lab = new JTextArea();
 		lab.setEditable(false);
 		lab.setFont(new Font("Courier New", Font.PLAIN, 13));
 		lab.setBounds(16, 215, 661, 445);
@@ -306,14 +309,26 @@ public class WindowBuilder {
 				int tamanho = Integer.parseInt(labDim.getText());
 				int numDragoes = Integer.parseInt(numDrag.getText());
 				
-				mouseMaze m = new mouseMaze(tamanho, numDragoes);
-				
+				mouseMaze m = new mouseMaze(tamanho, numDragoes, WindowBuilder.this);
 			}
 		});
 		btnModoDeDesenho.setBounds(187, 123, 146, 23);
 		frmJodo.getContentPane().add(btnModoDeDesenho);
 		
-		
-		
+	}
+	
+	public void setPlay(Play p)
+	{
+		this.play = p;
+	}
+	
+	public Play getPlay()
+	{
+		return play;
+	}
+	
+	public JTextArea getLab()
+	{
+		return lab;
 	}
 }

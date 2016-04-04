@@ -57,6 +57,7 @@ public class mouseMazePanel extends JPanel implements MouseListener
 		this.numDragoes = numDragoes;
 		this.typeBox = typeBox;
 		
+		
 		hero = hero.getScaledInstance(SIDE, SIDE, 1);
 		heroArmed =  heroArmed.getScaledInstance(SIDE, SIDE, 1);
 		sword =  sword.getScaledInstance(SIDE, SIDE, 1);
@@ -76,6 +77,8 @@ public class mouseMazePanel extends JPanel implements MouseListener
 			{
 				if(i == 0 || i == size-1 || j == 0|| j == size-1)
 					lab[i][j]= 'X';
+				else
+					lab[i][j]= ' ';
 			}
 		}
 		

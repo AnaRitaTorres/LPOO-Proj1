@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import maze.logic.Play;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,7 +26,6 @@ public class mouseMaze
 	private JFrame frm;
 	private JPanel contentPane;
 	private mouseMazePanel panel;
-	private mouseMazePanel mousePanel;
 	private Image hero;
 	private Image heroArmed;
 	private Image dragon;
@@ -32,11 +34,13 @@ public class mouseMaze
 	private Image wall;
 	private Image dragonWeapon;
 	private Image sword;
+	private WindowBuilder wb;
 	
 	public static final int SIDE = 30;
 
-	public mouseMaze(int size, int numDragoes) 
+	public mouseMaze(int size, int numDragoes, WindowBuilder wb) 
 	{
+		this.wb = wb;
 		frm = new JFrame();
 		frm.setBounds(100, 100, 707, 743);
 		//frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,19 +56,33 @@ public class mouseMaze
 		typeBox.setBounds(10, 11, 152, 23);
 		contentPane.add(typeBox);
 		
-		JButton endButtom = new JButton("");
+		mouseMazePanel panel = new mouseMazePanel(size, typeBox, numDragoes);
+		panel.setBounds(10, 60, 630, 630);
+		contentPane.add(panel);
+		
+		JButton endButtom = new JButton("Jogar");
 		endButtom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				//frm.dispatchEvent(new WindowEvent(frm, WindowEvent.WINDOW_CLOSING));
+				if(panel.findInMaze('S') == 1 && panel.findInMaze('H') == 1 
+						&& panel.findInMaze('E') == 1 && panel.findInMaze('D') == numDragoes)
+				{
+					String selected = (String) wb.typeDrag.getSelectedItem();
+					
+					wb.warning.setText("Pode Jogar!");
+					wb.setPlay(new Play(panel.getCraftedMaze(), wb.typeDragon(selected)));
+					wb.lab.setText(wb.getPlay().getLab().toString());
+					
+					wb.enableMovement();
+				}
+				
+				frm.dispatchEvent(new WindowEvent(frm, WindowEvent.WINDOW_CLOSING));
 			}
 		});
 		endButtom.setBounds(194, 11, 152, 23);
 		contentPane.add(endButtom);
 		
-		JPanel panel = new mouseMazePanel(size, typeBox, numDragoes);
-		panel.setBounds(10, 60, 630, 630);
-		contentPane.add(panel);
+		
 		
 	}
 	
