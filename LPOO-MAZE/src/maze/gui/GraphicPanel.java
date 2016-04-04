@@ -64,11 +64,14 @@ public class GraphicPanel extends JPanel
 				}
 				
 				p.gamePlayGui();
+				
 				if(p.getHero().getState() == characterState.DEAD)
 				{
 					p.setState(gameState.LOST);
 					JOptionPane.showMessageDialog(frame, "Perdeu o Jogo", "Estado do Jogo", JOptionPane.INFORMATION_MESSAGE);
 					removeKeyListener(this);
+					wb.disableMovement();
+					wb.warning.setText("Perdeu o Jogo. Pode gerar um novo Labirinto.");
 				}
 				if(!p.getLab().aliveDragon() && p.pointEquals(p.getLab().getOut(), p.getHero().getCharacterPosition()))
 				{
@@ -76,6 +79,7 @@ public class GraphicPanel extends JPanel
 					JOptionPane.showMessageDialog(frame, "Ganhou o Jogo", "Estado do Jogo", JOptionPane.INFORMATION_MESSAGE);
 					removeKeyListener(this);
 				}
+				
 			}
 			
 			@Override

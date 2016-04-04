@@ -39,6 +39,7 @@ public class WindowBuilder {
 	JButton btnDireita = new JButton("Direita");
 	JButton btnCima = new JButton("Cima");	 
 	JButton btnBaixo = new JButton("Baixo");
+	JButton btnAbrirJanela = new JButton("Modo Gráfico");
 	JLabel warning = new JLabel("");
 	JTextArea lab;
 	JComboBox<String> typeDrag;
@@ -87,6 +88,7 @@ public class WindowBuilder {
 		btnEsquerda.setEnabled(true);
 		btnDireita.setEnabled(true);
 		btnBaixo.setEnabled(true);
+		btnAbrirJanela.setEnabled(true);
 	}
 	
 	public void disableMovement()
@@ -95,6 +97,7 @@ public class WindowBuilder {
 		btnEsquerda.setEnabled(false);
 		btnDireita.setEnabled(false);
 		btnBaixo.setEnabled(false);
+		btnAbrirJanela.setEnabled(false);
 	}
 	
 	public void changeStatus()
@@ -129,6 +132,8 @@ public class WindowBuilder {
 	 */
 	private void initialize() 
 	{
+		disableMovement();
+		
 		frmJodo = new JFrame();
 		frmJodo.setResizable(false);
 		frmJodo.setTitle("Jogo do Labirinto");
@@ -286,7 +291,7 @@ public class WindowBuilder {
 		warning.setBounds(25, 161, 269, 19);
 		frmJodo.getContentPane().add(warning);
 		
-		JButton btnAbrirJanela = new JButton("Modo Gráfico");
+		//JButton btnAbrirJanela = new JButton("Modo Gráfico");
 		btnAbrirJanela.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
