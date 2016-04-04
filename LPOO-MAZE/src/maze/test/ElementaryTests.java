@@ -12,6 +12,7 @@ import maze.logic.Play;
 import maze.logic.Point;
 import static org.junit.Assert.assertEquals;
 
+
 public class ElementaryTests 
 {	
 	private Maze m = new Maze();

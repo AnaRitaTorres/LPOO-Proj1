@@ -54,7 +54,7 @@ public class MazeBuilder implements IMazeBuilder
 		addSword(size);
 		randomPath();
 		
-		printMaze();
+		//printMaze();
 		//System.out.print("\n");
 		//printVisited();
 		//System.out.print("\n");
