@@ -1,11 +1,26 @@
 package maze.cli;
 
+import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 import maze.logic.Maze;
+import java.io.InputStream;
+import java.util.Scanner;
+
 
 public class Interface 
 {
 	Scanner sc = new Scanner(System.in);
+	private boolean test = false;
+	
+	public void setTest()
+	{
+		test = true;
+	}
+	
+	public void setDefault()
+	{
+		test = false;
+	}
 	
 	public void printMaze(Maze maze)
 	{
@@ -22,19 +37,30 @@ public class Interface
 	
 	public char readMove()
 	{
-		System.out.print("\nDirection ( Up(U), Down (D), Left(L), Right(R)): ");
+		if(test == false)
+		{
+			System.out.print("\nDirection ( Up(U), Down (D), Left(L), Right(R)): ");
+			
+			char s = sc.next().charAt(0);
+			
+			return s;
+		}
+		else
+			return 'R';
 		
-		char s = sc.next().charAt(0);
-		//sc.close();
-		return s;
 		
 	}
 	
 	public char readGameState()
 	{
-		System.out.print("\nGame Mode? ( STATIC(T), SLEEP(S), RANDOM(R)): ");
-		char s = sc.next().charAt(0);
-		return s;
+		if(test == false)
+		{
+			System.out.print("\nGame Mode? ( STATIC(T), SLEEP(S), RANDOM(R)): ");
+			char s = sc.next().charAt(0);
+			return s;
+		}
+		else
+			return 'S';
 	}
 }
 

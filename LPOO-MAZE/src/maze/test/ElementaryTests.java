@@ -2,10 +2,13 @@ package maze.test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import maze.cli.Interface;
 import maze.logic.CharacterState.characterState;
+import maze.logic.Dragon;
 import maze.logic.GameState.gameState;
 import maze.logic.Hero;
 import maze.logic.Maze;
@@ -286,6 +289,52 @@ public class ElementaryTests
 		assertEquals(m.toString(),p.getLab().toString());
 		assertEquals(true,m.pointEquals(m.getMazeHero().getCharacterPosition(),p.getLab().getMazeHero().getCharacterPosition()));
 		assertEquals(true,m.pointEquals(m.getMazeWeapon().getPosition(), p.getLab().getMazeWeapon().getPosition()));
+		
+		assertEquals('E', p.getWeapon().getChar());
+		
+		ArrayList<Dragon> dragons = new ArrayList<Dragon>();
+		dragons.add(new Dragon(8,1,'D'));
+	}
+	
+	@Test(timeout=1000)
+	public void testGamePlayGui()
+	{
+		Play p = new Play();
+		char[][] maze = p.getLab().getMaze();
+		maze[1][6] = 'H';
+		maze[2][1] = 'E';
+		maze[1][8] = 'D';
+		
+		Play play = new Play(maze, gameState.SLEEP);
+		
+		play.getLab().move(movementType.RIGHT, play.getHero());
+		play.gamePlayGui();
+		
+		assertEquals(characterState.DEAD, play.getHero().getState());
+		
+	}
+	
+	@Test//(timeout=1000)
+	public void testGamePlay()
+	{
+		Play p = new Play();
+		
+		char[][] maze = p.getLab().getMaze();
+		maze[1][6] = 'H';
+		maze[2][1] = 'E';
+		maze[1][8] = 'D';
+		
+		Play play = new Play(maze, gameState.SLEEP);
+		
+		play.getLab().setInterface(play.getInterface());
+		
+		play.getInterface().setTest();
+		
+		play.gamePlay();
+		
+		assertEquals(characterState.DEAD, play.getHero().getState());
+		
+		play.getInterface().setDefault();
 	}
 	
 	@Test(timeout=1000)

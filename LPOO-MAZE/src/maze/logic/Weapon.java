@@ -31,7 +31,7 @@ public class Weapon
 	 *
 	 * @return the char
 	 */
-	char getChar()
+	public char getChar()
 	{
 		return c;
 	}

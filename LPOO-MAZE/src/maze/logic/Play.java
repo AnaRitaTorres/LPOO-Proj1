@@ -366,5 +366,15 @@ public class Play
 //			System.out.print("\nYou Won The Game!\n");
 //		}
 	}
+	
+	public Weapon getWeapon()
+	{
+		return w;
+	}
+	
+	public Interface getInterface()
+	{
+		return i;
+	}
 
 }

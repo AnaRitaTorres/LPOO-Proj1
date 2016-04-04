@@ -47,6 +47,10 @@ public class Maze
 
 	}
 
+	public void setInterface(Interface i)
+	{
+		this.i = i;
+	}
 	
 	/**
 	 * Instantiates a new maze.
