@@ -30,6 +30,7 @@ public class Play
 		h = new Hero(1, 1, 'H');
 		w = new Weapon(1, 2, 'E');
 		dragons.add( new Dragon(8, 1, 'D'));
+		
 	}
 	
 	public Maze getLab()
@@ -221,6 +222,11 @@ public class Play
 			}
 			
 		}
+	}
+	
+	public void setWeapon(Weapon r)
+	{
+		this.w=r;
 	}
 	
 	public void gamePlayGui()

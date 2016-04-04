@@ -1,5 +1,7 @@
 package maze.test;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import maze.cli.Interface;
@@ -10,7 +12,7 @@ import maze.logic.Maze;
 import maze.logic.MovementType.movementType;
 import maze.logic.Play;
 import maze.logic.Point;
-import static org.junit.Assert.assertEquals;
+import maze.logic.Weapon;
 
 
 public class ElementaryTests 
@@ -221,6 +223,7 @@ public class ElementaryTests
 		assertEquals(true,dragonMove);
 	}
 
+	//sleepMOde
 	@Test(timeout=1000)
 	public void testSleepMode()
 	{
@@ -272,6 +275,28 @@ public class ElementaryTests
 		assertEquals(true,dragonMove);
 		assertEquals(true,p.getGameType()==gameState.WON || p.getGameType()==gameState.LOST);
 		
-
+		
 	}
+
+	//extra tests
+	
+	@Test(timeout=1000)
+	public void testGets()
+	{
+		assertEquals(m.toString(),p.getLab().toString());
+		assertEquals(true,m.pointEquals(m.getMazeHero().getCharacterPosition(),p.getLab().getMazeHero().getCharacterPosition()));
+		assertEquals(true,m.pointEquals(m.getMazeWeapon().getPosition(), p.getLab().getMazeWeapon().getPosition()));
+	}
+	
+	@Test(timeout=1000)
+	public void dragWeapon()
+	{
+		Weapon j = new Weapon (7,1,'Y');
+		p.setWeapon(j);
+		m.move(movementType.LEFT, p.getDragon());
+		m.dragonWeapon(p.getDragon(), j);
+		assertEquals('F',m.getMaze()[1][7]);
+	}
+	
+
 }

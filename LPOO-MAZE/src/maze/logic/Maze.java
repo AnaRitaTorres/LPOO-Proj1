@@ -273,6 +273,7 @@ public class Maze
 		return hero;
 	}
 
+	
 	public Weapon getMazeWeapon()
 	{
 		
