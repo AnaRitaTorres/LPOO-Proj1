@@ -23,9 +23,9 @@ public class Character
 	protected characterState state;
 
 	/**
-	 * Gets the type.
+	 * Gets the type of character.
 	 *
-	 * @return the type
+	 * @return the type of the character
 	 */
 	public characterType getType()
 	{
@@ -33,9 +33,9 @@ public class Character
 	}
 
 	/**
-	 * Gets the state.
+	 * Gets the state of the character.
 	 *
-	 * @return the state
+	 * @return the state of the character
 	 */
 	public characterState getState()
 	{
@@ -43,9 +43,9 @@ public class Character
 	}
 
 	/**
-	 * Sets the state.
+	 * Sets the state of the character.
 	 *
-	 * @param cs the new state
+	 * @param cs the new state of the character
 	 */
 	public void setState(characterState cs)
 	{
@@ -73,9 +73,9 @@ public class Character
 	}
 
 	/**
-	 * Gets the char.
+	 * Gets the char of the character.
 	 *
-	 * @return the char
+	 * @return the char of the character
 	 */
 	public char getChar ()
 	{

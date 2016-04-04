@@ -12,9 +12,9 @@ public class Dragon extends Character
 	/**
 	 * Instantiates a new dragon.
 	 *
-	 * @param x the x
-	 * @param y the y
-	 * @param c the c
+	 * @param x coordinate 
+	 * @param y coordinate
+	 * @param c char that represents the dragon
 	 */
 	public Dragon(int x, int y, char c)
 	{
@@ -26,9 +26,9 @@ public class Dragon extends Character
 	
 	
 	/**
-	 * Gets the char
+	 * Gets the char of the dragon.
 	 * 
-	 * @param the char
+	 * @param char of the dragon
 	 */
 	public char getChar()
 	{
@@ -36,9 +36,9 @@ public class Dragon extends Character
 	}
 	
 	/**
-	 * Sets the char.
+	 * Sets the char of the dragon.
 	 *
-	 * @param c the new char
+	 * @param c the new char of the dragon
 	 */
 	public void setChar(char c)
 	{
@@ -46,9 +46,9 @@ public class Dragon extends Character
 	}
 	
 	/**
-	 * Sets the sleep.
+	 * Sets the sleep char.
 	 *
-	 * @param c the new sleep
+	 * @param c the new sleep char of the dragon
 	 */
 	public void setSleep(char c)
 	{

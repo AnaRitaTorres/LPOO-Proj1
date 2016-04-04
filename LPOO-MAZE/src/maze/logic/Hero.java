@@ -2,7 +2,6 @@ package maze.logic;
 
 import maze.logic.CharacterState.characterState;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Hero.
  */
@@ -13,9 +12,9 @@ public class Hero extends Character
 	/**
 	 * Instantiates a new hero.
 	 *
-	 * @param x the x
-	 * @param y the y
-	 * @param c the c
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param c the c that represents the hero
 	 */
 	public Hero(int x, int y, char c)
 	{
@@ -24,24 +23,30 @@ public class Hero extends Character
 		state = characterState.DISARMED;
 	}
 	
-	/* (non-Javadoc)
-	 * @see maze.logic.Character#getChar()
+	/**
+	 * Gets the char of the hero.
+	 * 
+	 * @param char of the hero
 	 */
 	public char getChar()
 	{
 		return c;
 	}
 	
-	/* (non-Javadoc)
-	 * @see maze.logic.Character#setArmed()
+	/**
+	 * Sets the char of the hero to armed.
+	 * 
+	 * @param char of the hero when armed
 	 */
 	public void setArmed()
 	{
 		c = 'A';
 	}
 	
-	/* (non-Javadoc)
-	 * @see maze.logic.Character#setDisarmed()
+	/**
+	 * Sets the char of the hero to disarmed.
+	 * 
+	 * @param char of the hero when disarmed
 	 */
 	public void setDisarmed()
 	{

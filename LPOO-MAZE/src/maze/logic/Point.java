@@ -1,6 +1,6 @@
 package maze.logic;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Point.
  */
@@ -26,7 +26,7 @@ public class Point
 	}
 	
 	/**
-	 * Gets the x.
+	 * Gets the x coordinate.
 	 *
 	 * @return the x
 	 */
@@ -36,7 +36,7 @@ public class Point
 	}
 	
 	/**
-	 * Gets the y.
+	 * Gets the y coordinate.
 	 *
 	 * @return the y
 	 */
@@ -46,7 +46,7 @@ public class Point
 	}
 	
 	/**
-	 * Sets the x.
+	 * Sets the x coordinate.
 	 *
 	 * @param x the new x
 	 */
@@ -56,7 +56,7 @@ public class Point
 	}
 	
 	/**
-	 * Sets the y.
+	 * Sets the y coordinate.
 	 *
 	 * @param y the new y
 	 */

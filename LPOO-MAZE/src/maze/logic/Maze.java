@@ -6,7 +6,7 @@ import maze.logic.Point;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Maze.
  */
@@ -76,9 +76,9 @@ public class Maze
 
 	
 	/**
-	 * Gets the out.
+	 * Gets the out point.
 	 *
-	 * @return the out
+	 * @return the out point
 	 */
 	public Point getOut()
 	{
@@ -87,9 +87,9 @@ public class Maze
 
 	
 	/**
-	 * Clear cell.
+	 * Clears the cell in the point specified.
 	 *
-	 * @param p the p
+	 * @param p the point
 	 */
 	public void clearCell(Point p)
 	{
@@ -98,10 +98,10 @@ public class Maze
 
 	
 	/**
-	 * Prints the cell.
+	 * Prints the cell in the point specified.
 	 *
-	 * @param p the p
-	 * @param c the c
+	 * @param p the point
+	 * @param c the char
 	 */
 	public void printCell(Point p,char c)
 	{
@@ -113,7 +113,7 @@ public class Maze
 	 * Checks if is out of bounds.
 	 *
 	 * @param p the p
-	 * @return true, if is out of bounds
+	 * @return true, if is out of bounds, otherwise false
 	 */
 	public boolean isOutOfBounds(Point p)
 	{
@@ -125,10 +125,10 @@ public class Maze
 
 	
 	/**
-	 * Checks if is cell free.
+	 * Checks if is cell free in the point specified.
 	 *
-	 * @param p the p
-	 * @return true, if is cell free
+	 * @param p the point
+	 * @return true, if is cell free, otherwise false
 	 */
 	public boolean isCellFree(Point p)
 	{
@@ -141,11 +141,11 @@ public class Maze
 	
 	
 	/**
-	 * Move.
+	 * Moves the character.
 	 *
-	 * @param mt the mt
-	 * @param c the c
-	 * @return true, if successful
+	 * @param mt the movement type
+	 * @param c the char that represents the character
+	 * @return true, if the movement is successful, otherwise false
 	 */
 	public boolean move(movementType mt, Character c)
 	{
@@ -192,9 +192,9 @@ public class Maze
 	}
 
 	/**
-	 * Move random.
+	 * Moves the character randomly.
 	 *
-	 * @param c the c
+	 * @param c the character
 	 */
 	public void moveRandom(Character c)
 	{
@@ -233,7 +233,7 @@ public class Maze
 	/**
 	 * Move handler.
 	 *
-	 * @param f the f
+	 * @param f the character
 	 */
 	public void moveHandler(Character f)
 	{
@@ -265,11 +265,11 @@ public class Maze
 	}
 
 	/**
-	 * Point equals.
+	 * Tests if points are equal.
 	 *
-	 * @param p1 the p1
-	 * @param p2 the p2
-	 * @return true, if successful
+	 * @param p1 the point
+	 * @param p2 the point
+	 * @return true, if successful, otherwise false
 	 */
 	public boolean pointEquals(Point p1, Point p2)
 	{
@@ -280,7 +280,7 @@ public class Maze
 	}
 
 	/**
-	 * Gets the exit.
+	 * Gets the point correspondent to the exit.
 	 *
 	 * @return the exit
 	 */
@@ -304,9 +304,9 @@ public class Maze
 	}
 
 	/**
-	 * Alive dragon.
+	 * Tests if dragon is alive.
 	 *
-	 * @return true, if successful
+	 * @return true, if the dragon is alive, otherwise false
 	 */
 	public boolean aliveDragon()
 	{
@@ -325,10 +325,10 @@ public class Maze
 	}
 
 	/**
-	 * Dragon weapon.
+	 * Tests if the dragon and the weapon are in the same cell, if they are it prints an 'F' in that cell.
 	 *
-	 * @param d the d
-	 * @param w the w
+	 * @param d the dragon
+	 * @param w the weapon
 	 */
 	public void dragonWeapon(Dragon d,Weapon w)
 	{
@@ -344,7 +344,7 @@ public class Maze
 	 *
 	 * @return the maze dragons
 	 */
-	public ArrayList<Dragon> getMazeDragons() // guarda todos os dragões da maze
+	public ArrayList<Dragon> getMazeDragons() 
 	{
 		ArrayList<Dragon> collect = new ArrayList<Dragon>();
 
@@ -410,8 +410,10 @@ public class Maze
 		return weapon;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Describes a representation of the maze in string format.
+	 * 
+	 * @return the string
 	 */
 	@Override
 	public String toString() 

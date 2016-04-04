@@ -3,7 +3,7 @@ package maze.logic;
 import java.util.Arrays;
 import java.util.Stack;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class MazeBuilder.
  */
@@ -21,12 +21,11 @@ public class MazeBuilder implements IMazeBuilder
 
 
 	/**
-	 * Checks if is odd.
+	 * Checks if a number is odd.
 	 *
-	 * @param i the i
-	 * @return true, if is odd
+	 * @param i the number
+	 * @return true, if is odd, otherwise false
 	 */
-	//auxiliar function (odd numbers)
 	public boolean isOdd(int i)
 	{
 		if (i % 2 == 0) 
@@ -75,10 +74,6 @@ public class MazeBuilder implements IMazeBuilder
 		addSword(size);
 		randomPath();
 		
-		//printMaze();
-		//System.out.print("\n");
-		//printVisited();
-		//System.out.print("\n");
 	}
 
 	/**
@@ -86,7 +81,7 @@ public class MazeBuilder implements IMazeBuilder
 	 */
 	public MazeBuilder() 
 	{
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -99,9 +94,11 @@ public class MazeBuilder implements IMazeBuilder
 		return lab;
 	}
 	
-	/* (non-Javadoc)
-	 * @see maze.logic.IMazeBuilder#buildMaze(int)
-	 */
+	/**
+	 * Builds the maze.
+	 * 
+	 *  @exception IllegalArgumentException , if the size of the maze is an even number.
+	 * */
 	public char[][] buildMaze(int size) throws IllegalArgumentException
 	{
 		if (size % 2 != 0) 
@@ -113,8 +110,10 @@ public class MazeBuilder implements IMazeBuilder
 			throw new IllegalArgumentException();
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * Describes a representation of the labyrinth in string format.
+	 * 
+	 * @return the string
 	 */
 	@Override
 	public String toString() 
@@ -134,7 +133,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Random path.
+	 * Construction of a random maze.
 	 */
 	public void randomPath()
 	{
@@ -227,7 +226,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Prints the visited.
+	 * Prints the visited cells of the maze.
 	 */
 	public void printVisited()
 	{
@@ -245,7 +244,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Generate exit.
+	 * Generates an exit.
 	 *
 	 * @param size the size
 	 */
@@ -286,10 +285,10 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Checks if is out.
+	 * Checks if the point is out of the bounds of the visited cells.
 	 *
-	 * @param p the p
-	 * @return true, if is out
+	 * @param p the point
+	 * @return true, if is out, otherwise false
 	 */
 	public boolean isOut(Point p)
 	{
@@ -300,10 +299,10 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Open cell around.
+	 * Checks if the cells around a specific one are free.
 	 *
-	 * @param p the p
-	 * @return true, if successful
+	 * @param p the point
+	 * @return true, if it is successful, otherwise false
 	 */
 	public boolean openCellAround(Point p)
 	{
@@ -342,9 +341,9 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Conversion to cells.
+	 * Conversion of the cell of the maze to a cell of the visited cells.
 	 *
-	 * @param p the p
+	 * @param p the point
 	 * @return the point
 	 */
 	public Point conversionToCells(Point p)
@@ -353,9 +352,9 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Conversion to maze.
+	 * Conversion of the cell of the visited cells to a cell of the maze.
 	 *
-	 * @param p the p
+	 * @param p the point
 	 * @return the point
 	 */
 	public Point conversionToMaze(Point p)
@@ -364,7 +363,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 
 	/**
-	 * Adds the hero.
+	 * Adds the hero to the maze randomly.
 	 *
 	 * @param size the size
 	 */
@@ -388,7 +387,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 	
 	/**
-	 * Adds the dragon.
+	 * Adds the dragon to the maze randomly.
 	 *
 	 * @param size the size
 	 */
@@ -443,7 +442,7 @@ public class MazeBuilder implements IMazeBuilder
 	}
 	
 	/**
-	 * Adds the sword.
+	 * Adds the sword to the maze randomly.
 	 *
 	 * @param size the size
 	 */

@@ -13,16 +13,16 @@ import maze.logic.GameState.gameState;
 public class Play 
 {
 	
-	/** The i. */
+	/** The interface. */
 	private Interface i = new Interface();
 	
 	/** The maze. */
 	private Maze maze = new Maze();
 	
-	/** The h. */
+	/** The hero. */
 	private Hero h;
 	
-	/** The w. */
+	/** The weapon. */
 	private Weapon w;
 	
 	/** The game type. */
@@ -34,8 +34,8 @@ public class Play
 	/**
 	 * Instantiates a new play.
 	 *
-	 * @param lab the lab
-	 * @param state the state
+	 * @param lab the labyrinth
+	 * @param state the state of the game
 	 */
 	public Play (char[][] lab, gameState state)
 	{
@@ -59,9 +59,9 @@ public class Play
 	}
 	
 	/**
-	 * Gets the lab.
+	 * Gets the labyrinth.
 	 *
-	 * @return the lab
+	 * @return the labyrinth
 	 */
 	public Maze getLab()
 	{
@@ -69,11 +69,11 @@ public class Play
 	}
 	
 	/**
-	 * Point equals.
+	 * Tests if points are equal.
 	 *
-	 * @param p1 the p1
-	 * @param p2 the p2
-	 * @return true, if successful
+	 * @param p1 the point
+	 * @param p2 the point
+	 * @return true, if successful, otherwise false
 	 */
 	public boolean pointEquals(Point p1, Point p2)
 	{
@@ -104,7 +104,7 @@ public class Play
 	}
 	
 	/**
-	 * Check armed.
+	 * Checks if the hero is armed or disarmed and verifies if the state of the hero needs to be changed.
 	 */
 	public void checkArmed()
 	{
@@ -126,7 +126,7 @@ public class Play
 	}
 	
 	/**
-	 * Update game.
+	 * Updates the states of the dragon and the hero.
 	 */
 	public void updateGame()
 	{
@@ -203,7 +203,7 @@ public class Play
 	/**
 	 * Sleep move.
 	 *
-	 * @return true, if successful
+	 * @return true, if successful,otherwise false
 	 */
 	public boolean sleepMove()
 	{
@@ -217,9 +217,9 @@ public class Play
 	}
 	
 	/**
-	 * Didnt complete mission.
+	 * Didn't complete mission, the hero can't get out of the maze if he hasn't killed the dragons.
 	 *
-	 * @return true, if successful
+	 * @return true, if successful, otherwise false
 	 */
 	public boolean didntCompleteMission()
 	{
@@ -231,7 +231,7 @@ public class Play
 	}
 	
 	/**
-	 * Game play.
+	 * Logic of the game.
 	 */
 	public void gamePlay()
 	{
@@ -314,7 +314,7 @@ public class Play
 	}
 	
 	/**
-	 * Game play gui.
+	 * Game logic concerning the gui.
 	 */
 	public void gamePlayGui()
 	{
@@ -351,27 +351,23 @@ public class Play
 		for(int i = 0; i < dragons.size(); i++)
 			maze.dragonWeapon(dragons.get(i), w);
 		
-//		i.printMaze(maze);
-//		
-//		if(h.getState() == characterState.DEAD )
-//		{
-//			setState(gameType.LOST);
-//			System.out.print("\nYou're Dead!\n");
-//			
-//		}
-//		
-//		if(!maze.aliveDragon() && pointEquals(maze.getOut(), h.getCharacterPosition()))
-//		{
-//			setState(gameType.WON);
-//			System.out.print("\nYou Won The Game!\n");
-//		}
 	}
 	
+	/**
+	 * Gets the weapon.
+	 *
+	 * @return the weapon
+	 */
 	public Weapon getWeapon()
 	{
 		return w;
 	}
 	
+	/**
+	 * Gets the interface.
+	 *
+	 * @return the interface
+	 */
 	public Interface getInterface()
 	{
 		return i;

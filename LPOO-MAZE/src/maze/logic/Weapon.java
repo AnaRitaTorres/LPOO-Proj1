@@ -1,6 +1,5 @@
 package maze.logic;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Weapon.
  */
@@ -16,9 +15,9 @@ public class Weapon
 	/**
 	 * Instantiates a new weapon.
 	 *
-	 * @param x the x
-	 * @param y the y
-	 * @param c the c
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 * @param c the weapon char
 	 */
 	public Weapon(int x, int y, char c)
 	{
@@ -27,9 +26,9 @@ public class Weapon
 	}
 	
 	/**
-	 * Gets the char.
+	 * Gets the char of the weapon.
 	 *
-	 * @return the char
+	 * @return the char of the weapon
 	 */
 	public char getChar()
 	{
@@ -38,9 +37,9 @@ public class Weapon
 	
 	
 	/**
-	 * Gets the position.
+	 * Gets the position of the weapon.
 	 *
-	 * @return the position
+	 * @return the position of the weapon
 	 */
 	public Point getPosition()
 	{

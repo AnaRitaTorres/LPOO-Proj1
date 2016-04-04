@@ -1,7 +1,6 @@
 
 package maze.logic;
 
-import maze.logic.GameState.gameState;
 import maze.logic.Play;
 
 /**
