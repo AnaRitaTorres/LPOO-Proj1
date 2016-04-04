@@ -22,6 +22,7 @@ public class mouseMaze
 {
 	private JFrame frm;
 	private JPanel contentPane;
+	private mouseMazePanel panel;
 	private mouseMazePanel mousePanel;
 	private Image hero;
 	private Image heroArmed;
@@ -65,5 +66,10 @@ public class mouseMaze
 		panel.setBounds(10, 60, 630, 630);
 		contentPane.add(panel);
 		
+	}
+	
+	public mouseMazePanel getPanel()
+	{
+		return panel;
 	}
 }

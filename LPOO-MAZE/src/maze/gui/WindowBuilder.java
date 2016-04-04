@@ -129,7 +129,7 @@ public class WindowBuilder {
 		frmJodo = new JFrame();
 		frmJodo.setResizable(false);
 		frmJodo.setTitle("Jogo do Labirinto");
-		frmJodo.setBounds(10,10,700,700);
+		frmJodo.setBounds(150,150,700,700);
 		frmJodo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJodo.getContentPane().setLayout(null);
 		
@@ -305,7 +305,9 @@ public class WindowBuilder {
 			{
 				int tamanho = Integer.parseInt(labDim.getText());
 				int numDragoes = Integer.parseInt(numDrag.getText());
+				
 				mouseMaze m = new mouseMaze(tamanho, numDragoes);
+				
 			}
 		});
 		btnModoDeDesenho.setBounds(187, 123, 146, 23);

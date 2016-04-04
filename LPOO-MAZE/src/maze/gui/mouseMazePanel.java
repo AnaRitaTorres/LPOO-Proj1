@@ -164,10 +164,17 @@ public class mouseMazePanel extends JPanel implements MouseListener
 		float mouseY = e.getY();
 		
 		System.out.print(mouseX);
+		System.out.print('\n');
 		System.out.print(mouseY);
+		System.out.print('\n');
+
+		int labX = (int) mouseX / SIDE;
+		int labY = (int) mouseY / SIDE;
 		
-		int labX = (int) mouseX / (size*2);
-		int labY = (int) mouseY / (size*2);
+		System.out.print(labX);
+		System.out.print('\n');
+		System.out.print(labY);
+		System.out.print('\n');
 		
 		
 		String selected = (String) typeBox.getSelectedItem();
@@ -198,7 +205,7 @@ public class mouseMazePanel extends JPanel implements MouseListener
 			break;
 				
 		case "Saída":
-			if(findInMaze('S') != 1)
+			if(findInMaze('S') != 1 && labX == size-1 && labY != 0 && labY != size-1)
 				lab[labY][labX] = 'S';
 			break;
 		}
@@ -228,6 +235,11 @@ public class mouseMazePanel extends JPanel implements MouseListener
 	public void mouseExited(MouseEvent e) 
 	{
 		
+	}
+	
+	public char[][] getCraftedMaze()
+	{
+		return lab;
 	}
 	
 }
