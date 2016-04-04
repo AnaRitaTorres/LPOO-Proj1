@@ -29,15 +29,15 @@ public class GraphicApp
 //		});
 //	}
 //	
-	public GraphicApp(Play play)
+	public GraphicApp(Play play, WindowBuilder wb)
 	{
 		frmgraphic = new JFrame ();
 		frmgraphic.setTitle("Jogo do Labirinto");
 		frmgraphic.setBounds(100,100,500,500);
-		frmgraphic.setPreferredSize(new Dimension(500, 500));
+		frmgraphic.setPreferredSize(new Dimension(500, 500)); 
 		//frmgraphic.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		GraphicPanel panel = new GraphicPanel(play, frmgraphic);
+		GraphicPanel panel = new GraphicPanel(play, frmgraphic, wb);
 		panel.setBackground(Color.WHITE);
 		frmgraphic.getContentPane().add(panel);
 		

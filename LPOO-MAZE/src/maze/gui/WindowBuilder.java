@@ -37,7 +37,7 @@ public class WindowBuilder {
 
 	JButton btnEsquerda = new JButton("Esquerda");
 	JButton btnDireita = new JButton("Direita");
-	JButton btnCima = new JButton("Cima");	
+	JButton btnCima = new JButton("Cima");	 
 	JButton btnBaixo = new JButton("Baixo");
 	JLabel warning = new JLabel("");
 	JTextArea lab;
@@ -291,7 +291,7 @@ public class WindowBuilder {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				GraphicApp app = new GraphicApp(play);
+				GraphicApp app = new GraphicApp(play, WindowBuilder.this);
 				
 				play.gamePlayGui();
 				changeStatus();
@@ -330,5 +330,12 @@ public class WindowBuilder {
 	public JTextArea getLab()
 	{
 		return lab;
+	}
+	
+	
+	public void move() 
+	{
+		changeStatus();
+		lab.setText(play.getLab().toString());
 	}
 }

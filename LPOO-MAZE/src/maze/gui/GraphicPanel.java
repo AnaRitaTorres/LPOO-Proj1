@@ -33,7 +33,7 @@ public class GraphicPanel extends JPanel
 	
 	
 	
-	public GraphicPanel(Play p, JFrame frame) 
+	public GraphicPanel(Play p, JFrame frame, WindowBuilder wb) 
 	{
 		this.p=p;
 		
@@ -46,15 +46,19 @@ public class GraphicPanel extends JPanel
 				{
 				case KeyEvent.VK_UP:
 					p.getLab().move(movementType.UP,p.getHero());
+					wb.move();
 					break;
 				case KeyEvent.VK_DOWN:
 					p.getLab().move(movementType.DOWN,p.getHero());
+					wb.move();
 					break;
 				case KeyEvent.VK_RIGHT:
 					p.getLab().move(movementType.RIGHT,p.getHero());
+					wb.move();
 					break;
 				case KeyEvent.VK_LEFT:
 					p.getLab().move(movementType.LEFT,p.getHero());
+					wb.move();
 					break;
 					
 				}
@@ -166,7 +170,7 @@ public class GraphicPanel extends JPanel
 				
 				if (lab[j][i] == 'S')
 				{
-					g.drawImage(exit, i*SIDE, j*SIDE, null);
+					g.drawImage(exit, i*SIDE, j*SIDE, null); 
 					repaint();
 				}
 				
