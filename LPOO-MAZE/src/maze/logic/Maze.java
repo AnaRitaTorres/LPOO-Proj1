@@ -1,18 +1,32 @@
 package maze.logic;
 
-import java.util.ArrayList;
-
 import maze.cli.Interface;
 import maze.logic.MovementType.movementType;
 import maze.logic.Point;
 
+import java.util.ArrayList;
+
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Maze.
+ */
 public class Maze 
 {
 
+	/** The maze. */
 	private char[][] maze;
+	
+	/** The i. */
 	private Interface i= new Interface();
+	
+	/** The out. */
 	private Point out;
+	
+	
 
+	/**
+	 * Instantiates a new maze.
+	 */
 	public Maze()
 	{ 		
 		char lab[][] = 
@@ -33,32 +47,70 @@ public class Maze
 
 	}
 
+	
+	/**
+	 * Instantiates a new maze.
+	 *
+	 * @param maze the maze
+	 */
 	public Maze(char[][] maze)
 	{
 		this.maze = maze;
 		this.out= getExit();
 	}
 
+	
+	/**
+	 * Gets the maze.
+	 *
+	 * @return the maze
+	 */
 	public char[][] getMaze()
 	{
 		return maze;
 	}
 
+	
+	/**
+	 * Gets the out.
+	 *
+	 * @return the out
+	 */
 	public Point getOut()
 	{
 		return out;
 	}
 
+	
+	/**
+	 * Clear cell.
+	 *
+	 * @param p the p
+	 */
 	public void clearCell(Point p)
 	{
 		maze[p.getY()][p.getX()]=' ';
 	}
 
+	
+	/**
+	 * Prints the cell.
+	 *
+	 * @param p the p
+	 * @param c the c
+	 */
 	public void printCell(Point p,char c)
 	{
 		maze[p.getY()][p.getX()]= c;
 	}
 
+	
+	/**
+	 * Checks if is out of bounds.
+	 *
+	 * @param p the p
+	 * @return true, if is out of bounds
+	 */
 	public boolean isOutOfBounds(Point p)
 	{
 		if(p.getY() > maze.length -1  || p.getY() < 0 || p.getX() > maze[0].length -1 || p.getX() < 0)
@@ -67,6 +119,13 @@ public class Maze
 			return false;
 	}
 
+	
+	/**
+	 * Checks if is cell free.
+	 *
+	 * @param p the p
+	 * @return true, if is cell free
+	 */
 	public boolean isCellFree(Point p)
 	{
 		if(maze[p.getY()][p.getX()] == 'X' || isOutOfBounds(p))
@@ -74,10 +133,16 @@ public class Maze
 		if (aliveDragon()&& maze[p.getY()][p.getX()] == 'S')
 			return false;
 		else return true;
-
-
 	}
-
+	
+	
+	/**
+	 * Move.
+	 *
+	 * @param mt the mt
+	 * @param c the c
+	 * @return true, if successful
+	 */
 	public boolean move(movementType mt, Character c)
 	{
 		Point s = new Point (0,0) ;
@@ -122,6 +187,11 @@ public class Maze
 
 	}
 
+	/**
+	 * Move random.
+	 *
+	 * @param c the c
+	 */
 	public void moveRandom(Character c)
 	{
 
@@ -156,6 +226,11 @@ public class Maze
 		}
 	}
 
+	/**
+	 * Move handler.
+	 *
+	 * @param f the f
+	 */
 	public void moveHandler(Character f)
 	{
 		char c = i.readMove();
@@ -185,6 +260,13 @@ public class Maze
 		}
 	}
 
+	/**
+	 * Point equals.
+	 *
+	 * @param p1 the p1
+	 * @param p2 the p2
+	 * @return true, if successful
+	 */
 	public boolean pointEquals(Point p1, Point p2)
 	{
 		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
@@ -193,6 +275,11 @@ public class Maze
 			return false;
 	}
 
+	/**
+	 * Gets the exit.
+	 *
+	 * @return the exit
+	 */
 	public Point getExit()
 	{
 		Point p = new Point (0,0);
@@ -212,6 +299,11 @@ public class Maze
 		return p;
 	}
 
+	/**
+	 * Alive dragon.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean aliveDragon()
 	{
 		boolean c = false;
@@ -228,6 +320,12 @@ public class Maze
 		return c;
 	}
 
+	/**
+	 * Dragon weapon.
+	 *
+	 * @param d the d
+	 * @param w the w
+	 */
 	public void dragonWeapon(Dragon d,Weapon w)
 	{
 		if(pointEquals(w.getPosition(),d.getCharacterPosition()))
@@ -237,6 +335,11 @@ public class Maze
 
 	}
 
+	/**
+	 * Gets the maze dragons.
+	 *
+	 * @return the maze dragons
+	 */
 	public ArrayList<Dragon> getMazeDragons() // guarda todos os dragões da maze
 	{
 		ArrayList<Dragon> collect = new ArrayList<Dragon>();
@@ -255,6 +358,11 @@ public class Maze
 		return collect;
 	}
 
+	/**
+	 * Gets the maze hero.
+	 *
+	 * @return the maze hero
+	 */
 	public Hero getMazeHero()
 	{
 		Hero hero = new Hero(0,0,'H');
@@ -274,6 +382,11 @@ public class Maze
 	}
 
 	
+	/**
+	 * Gets the maze weapon.
+	 *
+	 * @return the maze weapon
+	 */
 	public Weapon getMazeWeapon()
 	{
 		
@@ -293,6 +406,9 @@ public class Maze
 		return weapon;
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() 
 	{

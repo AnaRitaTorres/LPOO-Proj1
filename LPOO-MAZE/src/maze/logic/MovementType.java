@@ -1,10 +1,25 @@
 package maze.logic;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MovementType.
+ */
 public class MovementType 
 {
 
+	/**
+	 * The Enum movementType.
+	 */
 	public enum movementType
 	{
-		UP,DOWN,LEFT,RIGHT
+
+		/** The up. */
+		UP,
+		/** The down. */
+		DOWN,
+		/** The left. */
+		LEFT,
+		/** The right. */
+		RIGHT
 	}
 }

@@ -3,13 +3,29 @@ package maze.logic;
 import java.util.Arrays;
 import java.util.Stack;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MazeBuilder.
+ */
 public class MazeBuilder implements IMazeBuilder
 {
+	
+	/** The lab. */
 	private char[][] lab;
+	
+	/** The visited cells. */
 	private boolean[][] visitedCells;
+	
+	/** The path history. */
 	private Stack <Point> pathHistory = new Stack <Point> ();
 
 
+	/**
+	 * Checks if is odd.
+	 *
+	 * @param i the i
+	 * @return true, if is odd
+	 */
 	//auxiliar function (odd numbers)
 	public boolean isOdd(int i)
 	{
@@ -23,6 +39,11 @@ public class MazeBuilder implements IMazeBuilder
 		}
 	}
 
+	/**
+	 * Instantiates a new maze builder.
+	 *
+	 * @param size the size
+	 */
 	public MazeBuilder(int size)
 	{
 		lab = new char[size][size];
@@ -60,16 +81,27 @@ public class MazeBuilder implements IMazeBuilder
 		//System.out.print("\n");
 	}
 
+	/**
+	 * Instantiates a new maze builder.
+	 */
 	public MazeBuilder() 
 	{
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Gets the maze.
+	 *
+	 * @return the maze
+	 */
 	public char[][] getMaze()
 	{
 		return lab;
 	}
 	
+	/* (non-Javadoc)
+	 * @see maze.logic.IMazeBuilder#buildMaze(int)
+	 */
 	public char[][] buildMaze(int size) throws IllegalArgumentException
 	{
 		if (size % 2 != 0) 
@@ -81,6 +113,9 @@ public class MazeBuilder implements IMazeBuilder
 			throw new IllegalArgumentException();
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() 
 	{
@@ -98,6 +133,9 @@ public class MazeBuilder implements IMazeBuilder
 		return s;
 	}
 
+	/**
+	 * Random path.
+	 */
 	public void randomPath()
 	{
 		int random = (int)(Math.random() * 4);
@@ -172,6 +210,9 @@ public class MazeBuilder implements IMazeBuilder
 
 
 
+	/**
+	 * Prints the maze.
+	 */
 	public void printMaze()
 	{
 		for(int j=0; j < lab.length;j++)
@@ -185,6 +226,9 @@ public class MazeBuilder implements IMazeBuilder
 		}
 	}
 
+	/**
+	 * Prints the visited.
+	 */
 	public void printVisited()
 	{
 		for(int j=0; j < visitedCells.length;j++)
@@ -200,6 +244,11 @@ public class MazeBuilder implements IMazeBuilder
 		}
 	}
 
+	/**
+	 * Generate exit.
+	 *
+	 * @param size the size
+	 */
 	public void generateExit(int size)
 	{
 		int random = (int)(Math.random() * (size-1));
@@ -216,6 +265,11 @@ public class MazeBuilder implements IMazeBuilder
 		pathHistory.push(new Point (size-2,random));
 	}
 
+	/**
+	 * Creates the visited cell.
+	 *
+	 * @param size the size
+	 */
 	public void createVisitedCell(int size)
 	{
 		int vcDimension = (size - 1) / 2;
@@ -231,6 +285,12 @@ public class MazeBuilder implements IMazeBuilder
 		}
 	}
 
+	/**
+	 * Checks if is out.
+	 *
+	 * @param p the p
+	 * @return true, if is out
+	 */
 	public boolean isOut(Point p)
 	{
 		if(p.getY() > visitedCells.length-1  || p.getY() < 0 || p.getX() > visitedCells[0].length -1|| p.getX() < 0)
@@ -239,6 +299,12 @@ public class MazeBuilder implements IMazeBuilder
 			return false;
 	}
 
+	/**
+	 * Open cell around.
+	 *
+	 * @param p the p
+	 * @return true, if successful
+	 */
 	public boolean openCellAround(Point p)
 	{
 		Point newp = conversionToCells(p);
@@ -275,16 +341,33 @@ public class MazeBuilder implements IMazeBuilder
 		return false;
 	}
 
+	/**
+	 * Conversion to cells.
+	 *
+	 * @param p the p
+	 * @return the point
+	 */
 	public Point conversionToCells(Point p)
 	{
 		return new Point((p.getX() -1) / 2,(p.getY() -1) / 2);
 	}
 
+	/**
+	 * Conversion to maze.
+	 *
+	 * @param p the p
+	 * @return the point
+	 */
 	public Point conversionToMaze(Point p)
 	{
 		return new Point((p.getX()*2) +1,(p.getY()*2) +1);
 	}
 
+	/**
+	 * Adds the hero.
+	 *
+	 * @param size the size
+	 */
 	public void addHero(int size)
 	{
 		int random1 = (int)(Math.random() * (size-1));
@@ -304,6 +387,11 @@ public class MazeBuilder implements IMazeBuilder
 		lab[random1][random2] = 'H';
 	}
 	
+	/**
+	 * Adds the dragon.
+	 *
+	 * @param size the size
+	 */
 	public void addDragon(int size)
 	{
 		int random1 = (int)(Math.random() * (size-1));
@@ -354,6 +442,11 @@ public class MazeBuilder implements IMazeBuilder
 			
 	}
 	
+	/**
+	 * Adds the sword.
+	 *
+	 * @param size the size
+	 */
 	public void addSword(int size)
 	{
 		int random1 = (int)(Math.random() * (size-1));

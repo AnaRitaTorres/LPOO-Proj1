@@ -6,15 +6,37 @@ import maze.logic.CharacterState.characterState;
 import maze.logic.GameState.gameState;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Play.
+ */
 public class Play 
 {
+	
+	/** The i. */
 	private Interface i = new Interface();
+	
+	/** The maze. */
 	private Maze maze = new Maze();
+	
+	/** The h. */
 	private Hero h;
+	
+	/** The w. */
 	private Weapon w;
+	
+	/** The game type. */
 	private gameState gameType;	
+	
+	/** The dragons. */
 	private ArrayList<Dragon> dragons = new ArrayList<Dragon>();
 	
+	/**
+	 * Instantiates a new play.
+	 *
+	 * @param lab the lab
+	 * @param state the state
+	 */
 	public Play (char[][] lab, gameState state)
 	{
 		this.maze = new Maze(lab);
@@ -25,6 +47,9 @@ public class Play
 		
 	}
 	
+	/**
+	 * Instantiates a new play.
+	 */
 	public Play()
 	{
 		h = new Hero(1, 1, 'H');
@@ -33,11 +58,23 @@ public class Play
 		
 	}
 	
+	/**
+	 * Gets the lab.
+	 *
+	 * @return the lab
+	 */
 	public Maze getLab()
 	{
 		return this.maze;
 	}
 	
+	/**
+	 * Point equals.
+	 *
+	 * @param p1 the p1
+	 * @param p2 the p2
+	 * @return true, if successful
+	 */
 	public boolean pointEquals(Point p1, Point p2)
 	{
 		if(p1.getX() == p2.getX() && p1.getY() == p2.getY())
@@ -46,16 +83,29 @@ public class Play
 			return false;
 	}
 	
+	/**
+	 * Gets the hero.
+	 *
+	 * @return the hero
+	 */
 	public Hero getHero()
 	{
 		return h;
 	}
 	
+	/**
+	 * Gets the dragon.
+	 *
+	 * @return the dragon
+	 */
 	public Dragon getDragon()
 	{
 		return dragons.get(0);
 	}
 	
+	/**
+	 * Check armed.
+	 */
 	public void checkArmed()
 	{
 		if (h.getState()== characterState.ARMED)
@@ -75,6 +125,9 @@ public class Play
 		}
 	}
 	
+	/**
+	 * Update game.
+	 */
 	public void updateGame()
 	{
 		checkArmed();
@@ -102,16 +155,29 @@ public class Play
 		
 	}
 	
+	/**
+	 * Gets the game type.
+	 *
+	 * @return the game type
+	 */
 	public gameState getGameType()
 	{
 		return gameType;
 	}
 	
+	/**
+	 * Sets the state.
+	 *
+	 * @param g the new state
+	 */
 	public void setState(gameState g)
 	{
 		gameType = g;
 	}
 	
+	/**
+	 * Game state handler.
+	 */
 	public void gameStateHandler()
 	{
 		char c = i.readGameState();
@@ -134,6 +200,11 @@ public class Play
 		}
 	}
 	
+	/**
+	 * Sleep move.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean sleepMove()
 	{
 		if((int)(Math.random() * 2) == 1)
@@ -145,6 +216,11 @@ public class Play
 			return true;
 	}
 	
+	/**
+	 * Didnt complete mission.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean didntCompleteMission()
 	{
 		if (maze.aliveDragon()==true)
@@ -154,6 +230,9 @@ public class Play
 		else return true;
 	}
 	
+	/**
+	 * Game play.
+	 */
 	public void gamePlay()
 	{
 		maze.printCell(h.getCharacterPosition(),h.getChar());
@@ -224,11 +303,19 @@ public class Play
 		}
 	}
 	
+	/**
+	 * Sets the weapon.
+	 *
+	 * @param r the new weapon
+	 */
 	public void setWeapon(Weapon r)
 	{
 		this.w=r;
 	}
 	
+	/**
+	 * Game play gui.
+	 */
 	public void gamePlayGui()
 	{
 		for(int i = 0; i < dragons.size(); i++)
